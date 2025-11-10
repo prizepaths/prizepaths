@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PrizePaths — Sign Up</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="text-gray-900">
+  <!-- Header -->
+  <header class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <span class="text-2xl font-bold">PrizePaths</span>
+    </div>
+    <nav class="flex items-center gap-6">
+      <a href="login.html" class="text-sm font-medium hover:underline">Log in</a>
+      <a href="#signup" class="text-sm font-medium hover:underline">Sign up</a>
+    </nav>
+  </header>
+
+  <!-- Simple hero so we can see the page actually loads -->
+  <section class="max-w-7xl mx-auto px-6 py-10">
+    <h1 class="text-4xl font-semibold mb-4">Discover & Win New Products Every Week</h1>
+    <label class="flex items-center gap-3 mb-4">
+      <input id="agreeBox" type="checkbox" class="h-4 w-4 border-gray-300">
+      <span>I agree to the <a class="underline" href="terms.html" target="_blank">terms and conditions</a></span>
+    </label>
+    <button id="openSignup" class="px-6 py-3 rounded-full bg-black text-white font-semibold disabled:opacity-50">
+      Sign up now
+    </button>
+  </section>
+
+  <!-- Signup Modal -->
+  <div id="signupModal" class="fixed inset-0 hidden bg-black/60 z-50">
+    <div class="bg-white max-w-md mx-auto mt-24 p-6 rounded-2xl">
+      <h3 class="text-2xl font-semibold mb-4">Create your PrizePaths account</h3>
+      <form id="signupForm" class="space-y-4">
+        <input required name="name" placeholder="Full name" class="w-full border px-4 py-3 rounded-lg">
+        <input required type="email" name="email" placeholder="Email address" class="w-full border px-4 py-3 rounded-lg">
+        <input required type="password" name="password" placeholder="Create password (min 6 chars)" class="w-full border px-4 py-3 rounded-lg" minlength="6">
+        <button class="w-full bg-black text-white py-3 rounded-lg font-semibold">Create account</button>
+        <p class="text-sm text-center">Already have an account? <a class="underline" href="login.html">Log in</a></p>
+      </form>
+      <button id="closeSignup" class="mt-3 text-sm underline">Close</button>
+    </div>
+  </div>
+
+  <!-- Firebase (compat) — must be BEFORE app.js -->
+  <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
+
+  <!-- Your app config/logic -->
+  <script src="js/app.js"></script>
+
+  <!-- Page wiring (modal + auto-open support) -->
+  <script>
+    // Basic UI wiring
+    const agree = document.getElementById('agreeBox');
+    const modal = document.getElementById('signupModal');
+    const openBtn = document.getElementById('openSignup');
+    const closeBtn = document.getElementById('closeSignup');
+
+    if (openBtn) openBtn.addEventListener('click', () => {
+      if (!agree.checked) { alert('Please agree to the terms and conditions first.'); return; }
+      modal.classList.remove('hidden');
+    });
+    if (closeBtn) closeBtn.addEventListener('click', () => modal.classList.add('hidden'));
+
+    // Auto-open modal if ?signup=1 is present
+    const params = new URLSearchParams(window.location.search);
+    if (params.has('signup')) {
+      window.addEventListener('load', () => {
+        modal.classList.remove('hidden');
+      });
+    }
+
+    // Console breadcrumb to confirm JS executed
+    console.log("Index loaded; JS active.");
+  </script>
+</body>
+</html>
