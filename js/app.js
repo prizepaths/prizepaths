@@ -1,3 +1,12 @@
+// --- Boot banner: proves JS loaded on page ---
+document.addEventListener('DOMContentLoaded', () => {
+  const boot = document.createElement('div');
+  boot.id = 'pp-boot';
+  boot.style.cssText = 'position:fixed;top:8px;left:8px;z-index:9999;background:#111;color:#0f0;padding:6px 10px;border-radius:8px;font:12px/1.2 system-ui';
+  boot.textContent = 'PrizePaths JS loaded ✔';
+  document.body.appendChild(boot);
+});
+
 // === Visible error helper ===
 function showErr(msg) {
   let el = document.getElementById('pp-error');
@@ -12,43 +21,47 @@ function showErr(msg) {
 }
 
 // Handle signup on index.html
-const signupForm = // Visible debug helper
+// Visible debug helper (green console + on-page log)
 function pp(msg) {
   console.log('[PrizePaths]', msg);
   let el = document.getElementById('pp-debug');
   if (!el) {
     el = document.createElement('pre');
     el.id = 'pp-debug';
-    el.style.cssText = 'white-space:pre-wrap;background:#222;color:#0f0;padding:8px;margin:8px;font-family:monospace';
+    el.style.cssText = 'white-space:pre-wrap;background:#222;color:#0f0;padding:8px;margin:8px;font-family:monospace;border-radius:8px';
     document.body.prepend(el);
   }
   el.textContent += msg + '\n';
 }
 
-// Handle signup
+// Attach handler after DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('signupForm');
-  if (!form) return pp('⚠️ No #signupForm found');
+  if (!form) return pp('⚠️ No #signupForm found on page');
+
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const name = form.name.value.trim();
-    const email = form.email.value.trim().toLowerCase();
-    const pass = form.password.value;
+    const name = form.name?.value.trim() || '';
+    const email = form.email?.value.trim().toLowerCase() || '';
+    const pass = form.password?.value || '';
     pp('Submitting ' + email);
+
     try {
+      // requires firebase compat scripts to be loaded BEFORE app.js
       const cred = await auth.createUserWithEmailAndPassword(email, pass);
       pp('✅ Created user ' + cred.user.uid);
+
       await db.collection('users').doc(cred.user.uid).set({
         name, email,
         createdAt: firebase.firestore.FieldValue.serverTimestamp(),
         surveyCompleted: false
-      });
-      pp('✅ Firestore write done, redirecting...');
+      }, { merge: true });
+
+      pp('✅ Firestore write done, redirecting to survey.html …');
       window.location.href = 'survey.html';
     } catch (err) {
-      pp('❌ ' + (err.code || '') + ' ' + (err.message || err));
-      alert('Signup error: ' + (err.message || err));
+      pp('❌ ' + (err?.code || '') + ' ' + (err?.message || err));
+      alert('Signup error: ' + (err?.message || err));
     }
   });
 });
-
