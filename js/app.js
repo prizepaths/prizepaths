@@ -1,23 +1,41 @@
-<script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-analytics.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
+// === Visible error helper ===
+function showErr(msg) {
+  let el = document.getElementById('pp-error');
+  if (!el) {
+    el = document.createElement('div');
+    el.id = 'pp-error';
+    el.style.cssText = 'max-width:760px;margin:16px auto;padding:12px;border:1px solid #e11;color:#b00;background:#fee;border-radius:8px;font-family:system-ui';
+    document.body.prepend(el);
+  }
+  el.textContent = msg;
+  console.error('[PrizePaths]', msg);
+}
 
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  const firebaseConfig = {
-    apiKey: "AIzaSyAUB149FSoe2esB6-4mBCClXrBucbsbq5E",
-    authDomain: "prizepaths.firebaseapp.com",
-    projectId: "prizepaths",
-    storageBucket: "prizepaths.firebasestorage.app",
-    messagingSenderId: "908497618587",
-    appId: "1:908497618587:web:43f761c6ab1ac71ef3a83e",
-    measurementId: "G-YJTMSQZ6NL"
-  };
+// Handle signup on index.html
+const signupForm = document.getElementById('signupForm');
+if (signupForm) {
+  signupForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const name = signupForm.name.value.trim();
+    const email = signupForm.email.value.trim().toLowerCase();
+    const password = signupForm.password.value;
 
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-</script>
+    try {
+      console.log('[Signup] Using apiKey:', (firebase.app().options.apiKey||'unknown').slice(0,10)+'...');
+      const cred = await auth.createUserWithEmailAndPassword(email, password);
+      console.log('[Signup] Success UID:', cred.user?.uid);
+
+      await db.collection('users').doc(cred.user.uid).set({
+        name,
+        email,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+        surveyCompleted: false
+      }, { merge: true });
+
+      window.location.href = 'survey.html';
+    } catch (err) {
+      showErr(`Signup error: ${err?.code || ''} ${err?.message || err}`);
+      alert(err?.message || 'Signup failed');
+    }
+  });
+}
