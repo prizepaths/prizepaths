@@ -4,11 +4,10 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>PrizePaths — Discover & Win New Products</title>
-  <script src="https://cdn.tailwindcss.com?v=10"></script>
+  <script src="https://cdn.tailwindcss.com?v=11"></script>
   <style>
     html { scroll-behavior:smooth; }
     body { color:#000; background:#fff; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji"; }
-    /* hide debug helpers */
     #pp-debug, #pp-boot { display:none!important; }
   </style>
 </head>
@@ -25,29 +24,29 @@
     </nav>
   </header>
 
-  <!-- HERO (image first) -->
-  <section id="signup" class="max-w-7xl mx-auto px-6 md:py-8">
+  <!-- HERO (image first, aligned + scaled) -->
+  <section id="signup" class="max-w-7xl mx-auto px-6 md:py-10">
     <div class="grid md:grid-cols-12 gap-10 items-center">
       <!-- IMAGE LEFT -->
       <div class="md:col-span-6 flex justify-center">
         <img
-          src="assets/img/hero-collage.png?v=10"
+          src="assets/img/hero-collage.png?v=11"
           alt="PrizePaths Featured Products"
-          class="w-full h-auto max-w-[520px] md:max-w-[560px] rounded-xl"
+          class="w-[85%] md:w-[90%] lg:w-[95%] h-auto rounded-xl"
         />
       </div>
 
-      <!-- TEXT + FORM RIGHT (aligned with image) -->
+      <!-- TEXT RIGHT -->
       <div class="md:col-span-6 self-center">
-        <h1 class="text-[38px] md:text-[52px] leading-tight font-serif mb-6">
+        <h1 class="text-[32px] sm:text-[38px] md:text-[48px] lg:text-[52px] leading-tight font-serif mb-6">
           Discover &amp; Win New Products Every Week
         </h1>
 
-        <p class="text-lg md:text-xl text-gray-900 mb-8">
+        <p class="text-base sm:text-lg md:text-xl text-gray-900 mb-8">
           Brands want to hear your thoughts, Sign Up today to choose from hundreds of items.
         </p>
 
-        <!-- SIGNUP FORM (unchanged content/labels) -->
+        <!-- SIGNUP FORM -->
         <form id="signupForm" class="space-y-4 max-w-sm">
           <input required name="name" placeholder="Full Name*" class="w-full border border-black px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-black bg-white" />
           <input required type="email" name="email" placeholder="Email Address*" class="w-full border border-black px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-black bg-white" />
@@ -66,24 +65,24 @@
     </div>
   </section>
 
-  <!-- CHOOSE A PRODUCT (image first for consistency) -->
+  <!-- CHOOSE A PRODUCT (image first, aligned) -->
   <section class="max-w-7xl mx-auto px-6 py-16">
     <div class="grid md:grid-cols-12 gap-10 items-center">
       <!-- IMAGE LEFT -->
       <div class="md:col-span-6 flex justify-center">
         <img
-          src="assets/img/beauty-collection.png?v=10"
+          src="assets/img/beauty-collection.png?v=11"
           alt="Beauty Product Group"
-          class="w-full h-auto max-w-[520px] md:max-w-[560px] rounded-xl shadow-sm"
+          class="w-[85%] md:w-[90%] lg:w-[95%] h-auto rounded-xl shadow-sm"
         />
       </div>
 
-      <!-- TEXT RIGHT (aligned with image) -->
+      <!-- TEXT RIGHT -->
       <div class="md:col-span-6 self-center">
-        <h2 class="font-serif text-4xl md:text-5xl mb-8">
+        <h2 class="font-serif text-[30px] sm:text-[36px] md:text-[44px] lg:text-[48px] mb-8">
           CHOOSE A PRODUCT &amp; WE DO THE REST
         </h2>
-        <div class="space-y-6 text-lg text-gray-900 leading-8">
+        <div class="space-y-6 text-base sm:text-lg text-gray-900 leading-8">
           <p>We work with hundreds of brands that want you to try their product for FREE.</p>
           <p>No sneaky payments.</p>
           <p>Our goal is to make everyone a winner — we ship out as many prizes as we can to make sure as many people as possible get that PrizePaths feeling.</p>
@@ -98,12 +97,12 @@
   <section class="relative max-w-7xl mx-auto my-12 px-6">
     <div class="rounded-3xl overflow-hidden">
       <div class="h-[420px] bg-center bg-cover flex items-center justify-center"
-           style="background-image:url('assets/img/lock-bg.png?v=10')">
+           style="background-image:url('assets/img/lock-bg.png?v=11')">
         <div class="absolute inset-0 bg-black/45"></div>
         <div class="relative text-center text-white">
           <div class="text-6xl mb-4">🔒</div>
-          <h3 class="text-4xl md:text-5xl font-serif mb-4">SIGN UP TO UNLOCK</h3>
-          <p class="mb-6 opacity-90">The hundreds of other products we giveaway</p>
+          <h3 class="text-3xl sm:text-4xl md:text-5xl font-serif mb-4">SIGN UP TO UNLOCK</h3>
+          <p class="mb-6 opacity-90 text-sm sm:text-base md:text-lg">The hundreds of other products we giveaway</p>
           <a href="#signup" class="px-8 py-3 rounded-full bg-white text-black font-semibold inline-block">
             Sign Up Now
           </a>
@@ -114,7 +113,7 @@
 
   <!-- REVIEWS -->
   <section class="max-w-7xl mx-auto px-6 py-16">
-    <h2 class="text-center font-serif text-4xl mb-12">Our recent reviews</h2>
+    <h2 class="text-center font-serif text-[30px] sm:text-[36px] md:text-[44px] mb-12">Our recent reviews</h2>
     <div class="grid md:grid-cols-3 gap-6">
       <article class="rounded-2xl border border-black p-6">
         <div class="flex items-center gap-4 mb-4">
@@ -180,9 +179,10 @@
   <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
-  <script defer src="js/app.js?v=10"></script>
+  <script defer src="js/app.js?v=11"></script>
 </body>
 </html>
+
 
 
 
