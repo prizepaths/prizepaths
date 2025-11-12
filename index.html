@@ -4,13 +4,18 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>PrizePaths — Sign Up</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.tailwindcss.com?v=2"></script>
+  <style>
+    /* Hide any debug banners or logs */
+    #pp-debug, #pp-boot { display: none !important; }
+  </style>
 </head>
-<body class="text-gray-900">
-  <!-- Header -->
-  <header class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
+<body class="text-gray-900 bg-white">
+
+  <!-- HEADER -->
+  <header class="max-w-7xl mx-auto px-6 py-6 flex items-center justify-between">
     <div class="flex items-center gap-3">
-      <span class="text-2xl font-bold">PrizePaths</span>
+      <span class="text-3xl font-bold tracking-tight">PrizePaths</span>
     </div>
     <nav class="flex items-center gap-6">
       <a href="login.html" class="text-sm font-medium hover:underline">Log in</a>
@@ -18,26 +23,145 @@
     </nav>
   </header>
 
-  <!-- Hero -->
-  <section class="max-w-7xl mx-auto px-6 py-10">
-    <h1 class="text-4xl font-semibold mb-4">Discover & Win New Products Every Week</h1>
-    <label class="flex items-center gap-3 mb-4">
-      <input id="agreeBox" type="checkbox" class="h-4 w-4 border-gray-300">
-      <span>I agree to the <a class="underline" href="terms.html" target="_blank">terms and conditions</a></span>
-    </label>
-    <button id="openSignup" class="px-6 py-3 rounded-full bg-black text-white font-semibold disabled:opacity-50">
-      Sign up now
-    </button>
+  <!-- HERO -->
+  <section class="max-w-7xl mx-auto px-6 py-10 grid md:grid-cols-2 gap-8 items-center">
+    <div class="order-2 md:order-1">
+      <img src="assets/img/hero-collage.png?v=2" alt="Giveaway collage" class="w-full h-auto rounded-xl shadow" />
+    </div>
+    <div class="order-1 md:order-2 md:pl-8">
+      <h1 class="text-4xl md:text-5xl font-serif tracking-tight mb-6">
+        Discover &amp; Win New Products Every Week
+      </h1>
+      <p class="text-lg text-gray-700 mb-8">
+        Brands want to hear your thoughts. Sign up today to choose from hundreds of items.
+      </p>
+      <div class="space-y-4">
+        <button id="openSignup"
+                class="px-8 py-4 rounded-full bg-black text-white text-lg font-semibold disabled:opacity-50">
+          Sign up now
+        </button>
+        <label class="flex items-center gap-3 text-sm">
+          <input id="agreeBox" type="checkbox" class="h-4 w-4 border-gray-300" />
+          <span>I agree to the <a class="underline" href="terms.html" target="_blank">terms and conditions</a></span>
+        </label>
+      </div>
+    </div>
   </section>
 
-  <!-- Signup Modal -->
+  <!-- CHOOSE A PRODUCT SECTION -->
+  <section class="max-w-7xl mx-auto px-6 py-16 grid md:grid-cols-2 gap-10 items-center">
+    <div>
+      <h2 class="font-serif text-4xl md:text-5xl mb-8">CHOOSE A PRODUCT &amp; WE DO THE REST</h2>
+      <div class="space-y-6 text-lg text-gray-800 leading-8">
+        <p>We work with hundreds of brands that want you to try their product for FREE.</p>
+        <p>No sneaky payments.</p>
+        <p>Just sign up &amp; answer the questions that brands want to hear.</p>
+        <p>From luxury brands to the latest technology &amp; toys — we have something for everyone.</p>
+        <p>Trusted by 1000+ happy testers.</p>
+      </div>
+    </div>
+    <div>
+      <img src="assets/img/beauty-collection.png?v=2" alt="Beauty product group" class="w-full h-auto rounded-xl shadow" />
+    </div>
+  </section>
+
+  <!-- LOCK BANNER -->
+  <section class="relative max-w-7xl mx-auto my-12">
+    <div class="rounded-3xl overflow-hidden">
+      <div class="h-[420px] bg-center bg-cover flex items-center justify-center"
+           style="background-image:url('assets/img/lock-bg.png?v=2')">
+        <div class="absolute inset-0 bg-black/45"></div>
+        <div class="relative text-center text-white">
+          <div class="text-6xl mb-4">🔒</div>
+          <h3 class="text-4xl md:text-5xl font-serif mb-4">SIGN UP TO UNLOCK</h3>
+          <p class="mb-6 opacity-90">The hundreds of other products we giveaway</p>
+          <button id="openSignup2"
+                  class="px-8 py-3 rounded-full bg-white text-black font-semibold">
+            Sign Up Now
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="max-w-7xl mx-auto px-6 py-16">
+    <h2 class="text-center font-serif text-4xl mb-12">Our recent reviews</h2>
+    <div class="grid md:grid-cols-3 gap-6">
+      <article class="rounded-2xl border p-6">
+        <div class="flex items-center gap-4 mb-4">
+          <div class="h-12 w-12 rounded-full bg-black text-white flex items-center justify-center font-bold">S</div>
+          <div>
+            <div class="font-semibold">Sarah Johnson</div>
+            <div class="text-sm text-gray-500">September 15, 2024</div>
+          </div>
+        </div>
+        <p class="text-gray-800 leading-7">
+          Love that it’s all free to enter. You literally just answer a few questions — no payment or shipping costs.
+        </p>
+      </article>
+
+      <article class="rounded-2xl border p-6">
+        <div class="flex items-center gap-4 mb-4">
+          <div class="h-12 w-12 rounded-full bg-black text-white flex items-center justify-center font-bold">E</div>
+          <div>
+            <div class="font-semibold">Erin Hansen</div>
+            <div class="text-sm text-gray-500">September 27, 2025</div>
+          </div>
+        </div>
+        <p class="text-gray-800 leading-7">
+          My kids loved the toy giveaway! We got a Lego set. Definitely recommend giving it a go.
+        </p>
+      </article>
+
+      <article class="rounded-2xl border p-6">
+        <div class="flex items-center gap-4 mb-4">
+          <div class="h-12 w-12 rounded-full bg-black text-white flex items-center justify-center font-bold">E</div>
+          <div>
+            <div class="font-semibold">Emma Wilson</div>
+            <div class="text-sm text-gray-500">October 10, 2025</div>
+          </div>
+        </div>
+        <p class="text-gray-800 leading-7">
+          Received my free air fryer last week — couldn’t believe it when it arrived. Thank you!
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <!-- EMAIL LIST + FOOTER LINKS -->
+  <footer class="max-w-7xl mx-auto px-6 py-16">
+    <div class="grid md:grid-cols-[1fr,2fr] gap-10 items-start">
+      <div>
+        <h3 class="font-serif text-3xl mb-4">Join our email list</h3>
+      </div>
+      <form class="flex gap-3">
+        <input type="email" placeholder="Email address"
+               class="flex-1 border rounded-full px-5 py-3" />
+        <button class="px-6 py-3 rounded-full bg-black text-white font-semibold">→</button>
+      </form>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8 mt-12 text-gray-800">
+      <div>
+        <h4 class="font-semibold mb-3">Quick links</h4>
+        <ul class="space-y-2">
+          <li><a class="underline" href="terms.html">Terms &amp; Conditions</a></li>
+          <li><a class="underline" href="privacy.html">Privacy Policies</a></li>
+          <li><a class="underline" href="advertising.html">Advertising Discloser</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SIGNUP MODAL -->
   <div id="signupModal" class="fixed inset-0 hidden bg-black/60 z-50">
     <div class="bg-white max-w-md mx-auto mt-24 p-6 rounded-2xl">
       <h3 class="text-2xl font-semibold mb-4">Create your PrizePaths account</h3>
       <form id="signupForm" class="space-y-4">
-        <input required name="name" placeholder="Full name" class="w-full border px-4 py-3 rounded-lg">
-        <input required type="email" name="email" placeholder="Email address" class="w-full border px-4 py-3 rounded-lg">
-        <input required type="password" name="password" placeholder="Create password (min 6 chars)" class="w-full border px-4 py-3 rounded-lg" minlength="6">
+        <input required name="name" placeholder="Full name" class="w-full border px-4 py-3 rounded-lg" />
+        <input required type="email" name="email" placeholder="Email address" class="w-full border px-4 py-3 rounded-lg" />
+        <input required type="password" name="password" placeholder="Create password (min 6 chars)" class="w-full border px-4 py-3 rounded-lg" minlength="6" />
         <button class="w-full bg-black text-white py-3 rounded-lg font-semibold">Create account</button>
         <p class="text-sm text-center">Already have an account? <a class="underline" href="login.html">Log in</a></p>
       </form>
@@ -45,41 +169,36 @@
     </div>
   </div>
 
-  <!-- Page wiring (modal + auto-open support) -->
+  <!-- MODAL + PARAM HANDLER -->
   <script>
-    // Basic modal wiring
     const agree = document.getElementById('agreeBox');
     const modal = document.getElementById('signupModal');
     const openBtn = document.getElementById('openSignup');
+    const openBtn2 = document.getElementById('openSignup2');
     const closeBtn = document.getElementById('closeSignup');
 
-    if (openBtn) openBtn.addEventListener('click', () => {
-      if (!agree.checked) {
-        alert('Please agree to the terms and conditions first.');
-        return;
-      }
+    function openIfAgreed(){
+      if (!agree.checked) { alert('Please agree to the terms and conditions first.'); return; }
       modal.classList.remove('hidden');
-    });
-
-    if (closeBtn) closeBtn.addEventListener('click', () => {
-      modal.classList.add('hidden');
-    });
-
-    // Auto-open modal if ?signup=1 is present
-    const params = new URLSearchParams(window.location.search);
-    if (params.has('signup')) {
-      window.addEventListener('load', () => modal.classList.remove('hidden'));
     }
 
-    console.log("Index loaded; JS active.");
+    if (openBtn)  openBtn.addEventListener('click', openIfAgreed);
+    if (openBtn2) openBtn2.addEventListener('click', openIfAgreed);
+    if (closeBtn) closeBtn.addEventListener('click', () => modal.classList.add('hidden'));
+
+    const params = new URLSearchParams(window.location.search);
+    if (params.has('signup')) { window.addEventListener('load', () => modal.classList.remove('hidden')); }
   </script>
 
-  <!-- Firebase (compat) — MUST load before app.js -->
+  <!-- FIREBASE (compat) -->
   <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
 
-  <!-- PrizePaths app logic -->
+  <!-- APP LOGIC -->
   <script defer src="js/app.js"></script>
+
 </body>
 </html>
+
+
