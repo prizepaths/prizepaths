@@ -4,10 +4,11 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>PrizePaths — Discover & Win New Products</title>
-  <script src="https://cdn.tailwindcss.com?v=9"></script>
+  <script src="https://cdn.tailwindcss.com?v=10"></script>
   <style>
-    html { scroll-behavior: smooth; }
-    body { color: #000; background: #fff; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji"; }
+    html { scroll-behavior:smooth; }
+    body { color:#000; background:#fff; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji"; }
+    /* hide debug helpers */
     #pp-debug, #pp-boot { display:none!important; }
   </style>
 </head>
@@ -24,29 +25,29 @@
     </nav>
   </header>
 
-  <!-- HERO / SIGN-UP -->
-  <section id="signup" class="max-w-7xl mx-auto px-6 md:py-8 grid md:grid-cols-2 items-center gap-12">
-    <!-- Image first (on all screen sizes) -->
-    <div class="flex justify-center">
-      <img
-        src="assets/img/hero-collage.png?v=9"
-        alt="PrizePaths Featured Products"
-        class="w-full h-auto max-w-[520px] md:max-w-[560px] rounded-xl"
-      />
-    </div>
+  <!-- HERO (image first) -->
+  <section id="signup" class="max-w-7xl mx-auto px-6 md:py-8">
+    <div class="grid md:grid-cols-12 gap-10 items-center">
+      <!-- IMAGE LEFT -->
+      <div class="md:col-span-6 flex justify-center">
+        <img
+          src="assets/img/hero-collage.png?v=10"
+          alt="PrizePaths Featured Products"
+          class="w-full h-auto max-w-[520px] md:max-w-[560px] rounded-xl"
+        />
+      </div>
 
-    <!-- Text and form -->
-    <div class="text-left">
-      <h1 class="text-[38px] md:text-[52px] leading-tight font-serif mb-6">
-        Discover &amp; Win New Products Every Week
-      </h1>
+      <!-- TEXT + FORM RIGHT (aligned with image) -->
+      <div class="md:col-span-6 self-center">
+        <h1 class="text-[38px] md:text-[52px] leading-tight font-serif mb-6">
+          Discover &amp; Win New Products Every Week
+        </h1>
 
-      <p class="text-lg md:text-xl text-gray-900 mb-8">
-        Brands want to hear your thoughts, Sign Up today to choose from hundreds of items.
-      </p>
+        <p class="text-lg md:text-xl text-gray-900 mb-8">
+          Brands want to hear your thoughts, Sign Up today to choose from hundreds of items.
+        </p>
 
-      <!-- SIGNUP FORM (unchanged) -->
-      <div class="space-y-4">
+        <!-- SIGNUP FORM (unchanged content/labels) -->
         <form id="signupForm" class="space-y-4 max-w-sm">
           <input required name="name" placeholder="Full Name*" class="w-full border border-black px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-black bg-white" />
           <input required type="email" name="email" placeholder="Email Address*" class="w-full border border-black px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-black bg-white" />
@@ -65,23 +66,31 @@
     </div>
   </section>
 
-  <!-- CHOOSE A PRODUCT -->
-  <section class="max-w-7xl mx-auto px-6 py-16 grid md:grid-cols-2 gap-12 items-center">
-    <div>
-      <h2 class="font-serif text-4xl md:text-5xl mb-8">
-        CHOOSE A PRODUCT &amp; WE DO THE REST
-      </h2>
-      <div class="space-y-6 text-lg text-gray-900 leading-8">
-        <p>We work with hundreds of brands that want you to try their product for FREE.</p>
-        <p>No sneaky payments.</p>
-        <p>Our goal is to make everyone a winner — we ship out as many prizes as we can to make sure as many people as possible get that PrizePaths feeling.</p>
-        <p>From luxury brands to the latest technology &amp; toys — we have something for everyone.</p>
-        <p>Trusted by 1000+ happy testers.</p>
+  <!-- CHOOSE A PRODUCT (image first for consistency) -->
+  <section class="max-w-7xl mx-auto px-6 py-16">
+    <div class="grid md:grid-cols-12 gap-10 items-center">
+      <!-- IMAGE LEFT -->
+      <div class="md:col-span-6 flex justify-center">
+        <img
+          src="assets/img/beauty-collection.png?v=10"
+          alt="Beauty Product Group"
+          class="w-full h-auto max-w-[520px] md:max-w-[560px] rounded-xl shadow-sm"
+        />
       </div>
-    </div>
-    <div class="flex justify-center">
-      <img src="assets/img/beauty-collection.png?v=9" alt="Beauty Product Group"
-           class="w-full h-auto max-w-[520px] md:max-w-[560px] rounded-xl shadow-sm" />
+
+      <!-- TEXT RIGHT (aligned with image) -->
+      <div class="md:col-span-6 self-center">
+        <h2 class="font-serif text-4xl md:text-5xl mb-8">
+          CHOOSE A PRODUCT &amp; WE DO THE REST
+        </h2>
+        <div class="space-y-6 text-lg text-gray-900 leading-8">
+          <p>We work with hundreds of brands that want you to try their product for FREE.</p>
+          <p>No sneaky payments.</p>
+          <p>Our goal is to make everyone a winner — we ship out as many prizes as we can to make sure as many people as possible get that PrizePaths feeling.</p>
+          <p>From luxury brands to the latest technology &amp; toys — we have something for everyone.</p>
+          <p>Trusted by 1000+ happy testers.</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -89,7 +98,7 @@
   <section class="relative max-w-7xl mx-auto my-12 px-6">
     <div class="rounded-3xl overflow-hidden">
       <div class="h-[420px] bg-center bg-cover flex items-center justify-center"
-           style="background-image:url('assets/img/lock-bg.png?v=9')">
+           style="background-image:url('assets/img/lock-bg.png?v=10')">
         <div class="absolute inset-0 bg-black/45"></div>
         <div class="relative text-center text-white">
           <div class="text-6xl mb-4">🔒</div>
@@ -171,9 +180,10 @@
   <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
-  <script defer src="js/app.js?v=9"></script>
+  <script defer src="js/app.js?v=10"></script>
 </body>
 </html>
+
 
 
 
