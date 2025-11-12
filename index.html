@@ -18,7 +18,7 @@
     </nav>
   </header>
 
-  <!-- Simple hero so we can see the page actually loads -->
+  <!-- Hero -->
   <section class="max-w-7xl mx-auto px-6 py-10">
     <h1 class="text-4xl font-semibold mb-4">Discover & Win New Products Every Week</h1>
     <label class="flex items-center gap-3 mb-4">
@@ -45,38 +45,41 @@
     </div>
   </div>
 
-  <!-- Firebase (compat) — must be BEFORE app.js -->
-  <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
-
-  <!-- Your app config/logic -->
-  <script src="js/app.js"></script>
-
   <!-- Page wiring (modal + auto-open support) -->
   <script>
-    // Basic UI wiring
+    // Basic modal wiring
     const agree = document.getElementById('agreeBox');
     const modal = document.getElementById('signupModal');
     const openBtn = document.getElementById('openSignup');
     const closeBtn = document.getElementById('closeSignup');
 
     if (openBtn) openBtn.addEventListener('click', () => {
-      if (!agree.checked) { alert('Please agree to the terms and conditions first.'); return; }
+      if (!agree.checked) {
+        alert('Please agree to the terms and conditions first.');
+        return;
+      }
       modal.classList.remove('hidden');
     });
-    if (closeBtn) closeBtn.addEventListener('click', () => modal.classList.add('hidden'));
+
+    if (closeBtn) closeBtn.addEventListener('click', () => {
+      modal.classList.add('hidden');
+    });
 
     // Auto-open modal if ?signup=1 is present
     const params = new URLSearchParams(window.location.search);
     if (params.has('signup')) {
-      window.addEventListener('load', () => {
-        modal.classList.remove('hidden');
-      });
+      window.addEventListener('load', () => modal.classList.remove('hidden'));
     }
 
-    // Console breadcrumb to confirm JS executed
     console.log("Index loaded; JS active.");
   </script>
+
+  <!-- Firebase (compat) — MUST load before app.js -->
+  <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
+
+  <!-- PrizePaths app logic -->
+  <script defer src="js/app.js"></script>
 </body>
 </html>
