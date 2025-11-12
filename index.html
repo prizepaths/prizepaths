@@ -4,11 +4,11 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>PrizePaths — Discover & Win New Products</title>
-  <script src="https://cdn.tailwindcss.com?v=8"></script>
+  <script src="https://cdn.tailwindcss.com?v=9"></script>
   <style>
     html { scroll-behavior: smooth; }
     body { color: #000; background: #fff; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji"; }
-    #pp-debug, #pp-boot { display:none!important; } /* hide dev info */
+    #pp-debug, #pp-boot { display:none!important; }
   </style>
 </head>
 <body>
@@ -26,8 +26,17 @@
 
   <!-- HERO / SIGN-UP -->
   <section id="signup" class="max-w-7xl mx-auto px-6 md:py-8 grid md:grid-cols-2 items-center gap-12">
-    <!-- Text first on mobile -->
-    <div class="order-1 md:order-none text-left">
+    <!-- Image first (on all screen sizes) -->
+    <div class="flex justify-center">
+      <img
+        src="assets/img/hero-collage.png?v=9"
+        alt="PrizePaths Featured Products"
+        class="w-full h-auto max-w-[520px] md:max-w-[560px] rounded-xl"
+      />
+    </div>
+
+    <!-- Text and form -->
+    <div class="text-left">
       <h1 class="text-[38px] md:text-[52px] leading-tight font-serif mb-6">
         Discover &amp; Win New Products Every Week
       </h1>
@@ -54,15 +63,6 @@
         </form>
       </div>
     </div>
-
-    <!-- Image second on mobile -->
-    <div class="order-2 md:order-none flex justify-center mt-10 md:mt-0">
-      <img
-        src="assets/img/hero-collage.png?v=8"
-        alt="PrizePaths Featured Products"
-        class="w-full h-auto max-w-[520px] md:max-w-[560px] rounded-xl"
-      />
-    </div>
   </section>
 
   <!-- CHOOSE A PRODUCT -->
@@ -80,7 +80,7 @@
       </div>
     </div>
     <div class="flex justify-center">
-      <img src="assets/img/beauty-collection.png?v=8" alt="Beauty Product Group"
+      <img src="assets/img/beauty-collection.png?v=9" alt="Beauty Product Group"
            class="w-full h-auto max-w-[520px] md:max-w-[560px] rounded-xl shadow-sm" />
     </div>
   </section>
@@ -89,7 +89,7 @@
   <section class="relative max-w-7xl mx-auto my-12 px-6">
     <div class="rounded-3xl overflow-hidden">
       <div class="h-[420px] bg-center bg-cover flex items-center justify-center"
-           style="background-image:url('assets/img/lock-bg.png?v=8')">
+           style="background-image:url('assets/img/lock-bg.png?v=9')">
         <div class="absolute inset-0 bg-black/45"></div>
         <div class="relative text-center text-white">
           <div class="text-6xl mb-4">🔒</div>
@@ -171,9 +171,11 @@
   <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
-  <script defer src="js/app.js?v=8"></script>
+  <script defer src="js/app.js?v=9"></script>
 </body>
 </html>
+
+
 
 
 
