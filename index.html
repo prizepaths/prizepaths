@@ -4,11 +4,11 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>PrizePaths — Discover & Win New Products</title>
-  <script src="https://cdn.tailwindcss.com?v=7"></script>
+  <script src="https://cdn.tailwindcss.com?v=8"></script>
   <style>
-    html { scroll-behavior:smooth; }
-    body { color:#000; background:#fff; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji"; }
-    #pp-debug,#pp-boot { display:none!important; } /* hide dev text */
+    html { scroll-behavior: smooth; }
+    body { color: #000; background: #fff; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji"; }
+    #pp-debug, #pp-boot { display:none!important; } /* hide dev info */
   </style>
 </head>
 <body>
@@ -24,19 +24,10 @@
     </nav>
   </header>
 
-  <!-- HERO / SIGN-UP (layout polished; signup kept the same) -->
+  <!-- HERO / SIGN-UP -->
   <section id="signup" class="max-w-7xl mx-auto px-6 md:py-8 grid md:grid-cols-2 items-center gap-12">
-    <!-- Left image (smaller, neat, like the screenshot) -->
-    <div class="flex justify-center">
-      <img
-        src="assets/img/hero-collage.png?v=7"
-        alt="PrizePaths Featured Products"
-        class="w-full h-auto max-w-[520px] md:max-w-[560px] rounded-xl"
-      />
-    </div>
-
-    <!-- Right text + (unchanged) signup controls -->
-    <div class="text-left">
+    <!-- Text first on mobile -->
+    <div class="order-1 md:order-none text-left">
       <h1 class="text-[38px] md:text-[52px] leading-tight font-serif mb-6">
         Discover &amp; Win New Products Every Week
       </h1>
@@ -45,10 +36,8 @@
         Brands want to hear your thoughts, Sign Up today to choose from hundreds of items.
       </p>
 
-      <!-- SIGNUP AREA – left exactly as you had it -->
+      <!-- SIGNUP FORM (unchanged) -->
       <div class="space-y-4">
-        <!-- If you previously had only a button + terms, keep that exactly; if you had full form, leave it. -->
-        <!-- BEGIN: your existing signup controls (unchanged) -->
         <form id="signupForm" class="space-y-4 max-w-sm">
           <input required name="name" placeholder="Full Name*" class="w-full border border-black px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-black bg-white" />
           <input required type="email" name="email" placeholder="Email Address*" class="w-full border border-black px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-black bg-white" />
@@ -63,8 +52,16 @@
             <span>I agree to the <a href="terms.html" class="underline">terms and conditions</a></span>
           </label>
         </form>
-        <!-- END: your existing signup controls (unchanged) -->
       </div>
+    </div>
+
+    <!-- Image second on mobile -->
+    <div class="order-2 md:order-none flex justify-center mt-10 md:mt-0">
+      <img
+        src="assets/img/hero-collage.png?v=8"
+        alt="PrizePaths Featured Products"
+        class="w-full h-auto max-w-[520px] md:max-w-[560px] rounded-xl"
+      />
     </div>
   </section>
 
@@ -83,16 +80,16 @@
       </div>
     </div>
     <div class="flex justify-center">
-      <img src="assets/img/beauty-collection.png?v=7" alt="Beauty Product Group"
+      <img src="assets/img/beauty-collection.png?v=8" alt="Beauty Product Group"
            class="w-full h-auto max-w-[520px] md:max-w-[560px] rounded-xl shadow-sm" />
     </div>
   </section>
 
-  <!-- LOCK BANNER (unchanged visual style) -->
+  <!-- LOCK BANNER -->
   <section class="relative max-w-7xl mx-auto my-12 px-6">
     <div class="rounded-3xl overflow-hidden">
       <div class="h-[420px] bg-center bg-cover flex items-center justify-center"
-           style="background-image:url('assets/img/lock-bg.png?v=7')">
+           style="background-image:url('assets/img/lock-bg.png?v=8')">
         <div class="absolute inset-0 bg-black/45"></div>
         <div class="relative text-center text-white">
           <div class="text-6xl mb-4">🔒</div>
@@ -170,11 +167,11 @@
     </div>
   </footer>
 
-  <!-- Firebase (unchanged) -->
+  <!-- Firebase -->
   <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
-  <script defer src="js/app.js?v=7"></script>
+  <script defer src="js/app.js?v=8"></script>
 </body>
 </html>
 
