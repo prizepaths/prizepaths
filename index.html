@@ -1,298 +1,211 @@
-<!doctype html>
+<!doctype html> 
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>PrizePaths — Sign Up</title>
-
-  <!-- Tailwind CDN for simple styling -->
-  <script src="https://cdn.tailwindcss.com"></script>
+  <title>PrizePaths — Discover & Win New Products</title>
+  <script src="https://cdn.tailwindcss.com?v=13"></script>
+  <style>
+    html { scroll-behavior:smooth; }
+    body {
+      color:#000;
+      background:#fff;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter,
+                   Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+    /* hide green debug text */
+    #pp-debug, #pp-boot { display:none!important; }
+  </style>
 </head>
-<body class="text-gray-900 bg-white">
+<body>
 
-  <!-- ================= HEADER ================= -->
-  <header class="border-b border-gray-200">
-    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-      <!-- Logo (double size) -->
-      <div class="flex items-center gap-3">
-        <!-- logo file: assets/img/prizepaths-logo.png -->
-        <img src="assets/img/prizepaths-logo.png"
-             alt="PrizePaths"
-             class="h-16 md:h-20 w-auto" />
-      </div>
-
-      <nav class="flex items-center gap-6 text-sm font-medium">
-        <a href="login.html" class="hover:underline">Log in</a>
-        <a href="#signup" class="hover:underline">Sign up</a>
-      </nav>
-    </div>
+  <!-- HEADER -->
+  <header class="max-w-7xl mx-auto px-6 py-6 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-3">
+      <!-- Logo doubled in size -->
+      <img src="assets/img/prizepaths-logo.png?v=13" alt="PrizePaths" class="h-18 md:h-20 w-auto" />
+    </a>
+    <nav class="flex items-center gap-6">
+      <a href="login.html" class="text-sm font-medium hover:underline">Log in</a>
+      <a href="#signup" class="text-sm font-medium hover:underline">Sign up</a>
+    </nav>
   </header>
 
-  <!-- ================= HERO / MAIN SIGNUP SECTION ================= -->
-  <main>
-    <!-- Half image / half text -->
-    <section id="signup" class="max-w-6xl mx-auto px-6 pt-10 pb-16">
-      <div class="grid md:grid-cols-2 gap-10 items-stretch">
-        <!-- LEFT: Hero image -->
-        <div class="flex items-center justify-center">
-          <!-- hero file: grouped prize.png (in project root) -->
-          <img src="grouped prize.png"
-               alt="PrizePaths premium prizes"
-               class="w-full max-w-xl rounded-xl object-contain" />
-        </div>
+  <!-- HERO (50/50, text top + bottom aligned with image) -->
+  <section id="signup" class="max-w-7xl mx-auto px-6 md:py-10">
+    <div class="grid md:grid-cols-12 gap-10 items-stretch">
+      <!-- IMAGE LEFT -->
+      <div class="md:col-span-6 flex justify-center items-start">
+        <img
+          src="assets/img/hero-collage.png?v=13"
+          alt="PrizePaths Featured Products"
+          class="w-[85%] md:w-[90%] lg:w-[95%] h-auto rounded-xl"
+        />
+      </div>
 
-        <!-- RIGHT: Text + checkbox + button -->
-        <div class="flex flex-col justify-between h-full">
+      <!-- TEXT RIGHT: heading aligned with top of image, form aligned with bottom -->
+      <div class="md:col-span-6 flex flex-col justify-between h-full">
+        <div class="max-w-[560px] flex flex-col justify-between h-full">
+          <!-- Top block (heading + paragraph) -->
           <div>
-            <h1 class="text-4xl md:text-5xl font-serif mb-6 leading-tight">
+            <h1 class="text-[30px] sm:text-[36px] md:text-[44px] lg:text-[48px] leading-[1.08] font-serif mb-6">
               Discover &amp; Win New Products Every Week
             </h1>
-            <p class="mb-4 text-lg">
-              Brands want to hear your thoughts.
-            </p>
-            <p class="mb-4 text-lg">
-              Sign Up to get Exclusive Offers &amp; Access to 100's of Free
-              Products from the brands you know &amp; love.
-            </p>
-            <p class="mb-8 text-lg">
-              No Shipping Fees. No Credit Cards. No Worries.
+
+            <p class="text-[16px] sm:text-[18px] md:text-[20px] text-gray-900 mb-8 leading-relaxed">
+              Brands want to hear your thoughts, Sign Up today to choose from hundreds of items.
             </p>
           </div>
 
-          <div>
-            <label class="flex items-center gap-3 mb-4">
-              <input id="agreeBox" type="checkbox" class="h-4 w-4 border-gray-300" />
-              <span class="text-sm">
-                I agree to the
-                <a href="terms.html" target="_blank" class="underline">
-                  terms and conditions
-                </a>
-                and understand I’ll be added to the PrizePaths email list.
-              </span>
-            </label>
+          <!-- Bottom block (signup form) -->
+          <form id="signupForm" class="space-y-4 max-w-[480px] mt-6">
+            <input required name="name" placeholder="Full Name*"
+                   class="w-full border border-black px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-black bg-white" />
+            <input required type="email" name="email" placeholder="Email Address*"
+                   class="w-full border border-black px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-black bg-white" />
+            <input required type="password" name="password" minlength="6"
+                   placeholder="Create password (min 6 chars)*"
+                   class="w-full border border-black px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-black bg-white" />
 
-            <button id="openSignup"
-                    class="px-8 py-3 rounded-full bg-black text-white font-semibold text-lg disabled:opacity-50">
+            <button class="w-full md:w-auto bg-black text-white font-semibold px-8 py-4 rounded-2xl text-lg hover:bg-gray-800">
               Sign up now
             </button>
-          </div>
+
+            <label class="flex items-start gap-3 text-sm text-gray-800">
+              <input id="acceptTos" type="checkbox" class="mt-1 h-4 w-4 border-gray-400" required />
+              <span>
+                I agree to the <a href="terms.html" class="underline">terms and conditions</a>
+              </span>
+            </label>
+          </form>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- ================= CHOOSE A PRODUCT SECTION ================= -->
-    <section class="max-w-6xl mx-auto px-6 py-16 border-t border-gray-200">
-      <div class="grid md:grid-cols-2 gap-12 items-center">
-        <!-- LEFT: Text -->
-        <div>
-          <h2 class="text-4xl md:text-5xl font-serif mb-6 leading-tight">
+  <!-- CHOOSE A PRODUCT (image first, aligned) -->
+  <section class="max-w-7xl mx-auto px-6 py-16">
+    <div class="grid md:grid-cols-12 gap-10 items-center">
+      <!-- IMAGE LEFT -->
+      <div class="md:col-span-6 flex justify-center">
+        <img
+          src="assets/img/beauty-collection.png?v=13"
+          alt="Beauty Product Group"
+          class="w-[85%] md:w-[90%] lg:w-[95%] h-auto rounded-xl shadow-sm"
+        />
+      </div>
+
+      <!-- TEXT RIGHT -->
+      <div class="md:col-span-6 self-center">
+        <div class="max-w-[560px]">
+          <h2 class="font-serif text-[28px] sm:text-[34px] md:text-[42px] lg:text-[46px] leading-[1.12] mb-8">
             CHOOSE A PRODUCT &amp; WE DO THE REST
           </h2>
-
-          <p class="mb-4 text-lg">
-            We work with hundreds of brands that want you to try their product for FREE.
-          </p>
-
-          <p class="mb-4 text-lg">
-            No sneaky payments.
-          </p>
-
-          <p class="mb-4 text-lg">
-            Our goal is to make everyone a winner — we ship out as many prizes as we can
-            to make sure as many people as possible get that PrizePaths feeling.
-          </p>
-
-          <p class="mb-4 text-lg">
-            From luxury brands to the latest technology &amp; toys, we have something for everyone.
-          </p>
-
-          <p class="mb-2 text-lg">
-            Trusted by 1000+ happy testers.
-          </p>
-        </div>
-
-        <!-- RIGHT: Supporting image -->
-        <div class="flex items-center justify-center">
-          <!-- section file: beauty product group.png (in project root) -->
-          <img src="beauty product group.png"
-               alt="Beauty product group"
-               class="w-full max-w-lg rounded-xl object-cover" />
+          <div class="space-y-6 text-[16px] sm:text-[18px] text-gray-900 leading-8">
+            <p>We work with hundreds of brands that want you to try their product for FREE.</p>
+            <p>No sneaky payments.</p>
+            <p>Our goal is to make everyone a winner — we ship out as many prizes as we can to make sure as many people as possible get that PrizePaths feeling.</p>
+            <p>From luxury brands to the latest technology &amp; toys — we have something for everyone.</p>
+            <p>Trusted by 1000+ happy testers.</p>
+          </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- ================= SIGN UP TO UNLOCK BANNER ================= -->
-    <section class="relative w-full my-20">
-      <!-- banner file: Locked signup photo.png (in project root) -->
-      <div class="relative h-[600px] md:h-[680px] bg-center bg-cover flex items-center justify-center"
-           style="background-image:url('Locked signup photo.png?v=1')">
-        <div class="absolute inset-0 bg-black/60"></div>
+  <!-- LOCK BANNER: full-width and taller -->
+  <section class="relative w-full my-16">
+    <div
+      class="relative h-[520px] md:h-[600px] bg-center bg-cover flex items-center justify-center"
+      style="background-image:url('assets/img/lock-bg.png?v=13')"
+    >
+      <div class="absolute inset-0 bg-black/45"></div>
+      <div class="relative text-center text-white px-4">
+        <div class="text-6xl md:text-7xl mb-4">🔒</div>
+        <h3 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif mb-4">
+          SIGN UP TO UNLOCK
+        </h3>
+        <p class="mb-6 opacity-90 text-sm sm:text-base md:text-lg lg:text-xl">
+          The hundreds of other products we giveaway
+        </p>
+        <a href="#signup"
+           class="px-8 py-3 rounded-full bg-white text-black font-semibold inline-block hover:bg-gray-100">
+          Sign Up Now
+        </a>
+      </div>
+    </div>
+  </section>
 
-        <div class="relative text-center text-white px-4 drop-shadow-lg">
-          <div class="text-7xl mb-6">🔒</div>
-          <h3 class="text-4xl sm:text-5xl md:text-6xl font-serif mb-6">
-            SIGN UP TO UNLOCK
-          </h3>
-          <p class="mb-8 opacity-95 text-lg sm:text-xl md:text-2xl">
-            The hundreds of other products we giveaway
-          </p>
-          <a href="#signup"
-             class="px-10 py-4 rounded-full bg-white text-black font-semibold text-lg inline-block hover:bg-gray-100">
-            Sign Up Now
-          </a>
+  <!-- REVIEWS -->
+  <section class="max-w-7xl mx-auto px-6 py-16">
+    <h2 class="text-center font-serif text-[28px] sm:text-[34px] md:text-[42px] mb-12">
+      Our recent reviews
+    </h2>
+    <div class="grid md:grid-cols-3 gap-6">
+      <article class="rounded-2xl border border-black p-6">
+        <div class="flex items-center gap-4 mb-4">
+          <div class="h-12 w-12 rounded-full bg-black text-white flex items-center justify-center font-bold">S</div>
+          <div>
+            <div class="font-semibold">Sarah Johnson</div>
+            <div class="text-sm text-gray-500">September 15, 2024</div>
+          </div>
         </div>
-      </div>
-    </section>
+        <p>
+          Love that it’s all free to enter. You literally just answer a few questions —
+          no payment or shipping costs.
+        </p>
+      </article>
 
-    <!-- ================= REVIEWS SECTION ================= -->
-    <section class="max-w-6xl mx-auto px-6 pb-16">
-      <h2 class="text-3xl md:text-4xl font-serif text-center mb-10">
-        Our recent reviews
-      </h2>
-
-      <div class="grid md:grid-cols-3 gap-8">
-        <article class="border border-gray-200 rounded-2xl p-6 shadow-sm">
-          <div class="flex items-center gap-4 mb-4">
-            <div class="h-10 w-10 rounded-full bg-black text-white flex items-center justify-center font-semibold">
-              S
-            </div>
-            <div>
-              <h3 class="font-semibold">Sarah Johnson</h3>
-              <p class="text-xs text-gray-500">September 15, 2024</p>
-            </div>
+      <article class="rounded-2xl border border-black p-6">
+        <div class="flex items-center gap-4 mb-4">
+          <div class="h-12 w-12 rounded-full bg-black text-white flex items-center justify-center font-bold">E</div>
+          <div>
+            <div class="font-semibold">Erin Hansen</div>
+            <div class="text-sm text-gray-500">September 27, 2025</div>
           </div>
-          <p class="text-yellow-400 mb-2">★★★★★</p>
-          <p class="text-sm leading-relaxed">
-            Love that it’s all free to enter. You literally just answer a few questions —
-            no payment or shipping costs. I’ve entered every draw since last month.
-          </p>
-        </article>
+        </div>
+        <p>
+          My kids loved the toy giveaway! We got a Lego set. Definitely recommend giving it a go.
+        </p>
+      </article>
 
-        <article class="border border-gray-200 rounded-2xl p-6 shadow-sm">
-          <div class="flex items-center gap-4 mb-4">
-            <div class="h-10 w-10 rounded-full bg-black text-white flex items-center justify-center font-semibold">
-              E
-            </div>
-            <div>
-              <h3 class="font-semibold">Erin Hansen</h3>
-              <p class="text-xs text-gray-500">September 27, 2025</p>
-            </div>
+      <article class="rounded-2xl border border-black p-6">
+        <div class="flex items-center gap-4 mb-4">
+          <div class="h-12 w-12 rounded-full bg-black text-white flex items-center justify-center font-bold">E</div>
+          <div>
+            <div class="font-semibold">Emma Wilson</div>
+            <div class="text-sm text-gray-500">October 10, 2025</div>
           </div>
-          <p class="text-yellow-400 mb-2">★★★★★</p>
-          <p class="text-sm leading-relaxed">
-            My kids loved the toy giveaway! We got an awesome set. They were stoked —
-            definitely recommend giving it a go.
-          </p>
-        </article>
+        </div>
+        <p>
+          Received my free air fryer last week — couldn’t believe it when it arrived. Thank you!
+        </p>
+      </article>
+    </div>
+  </section>
 
-        <article class="border border-gray-200 rounded-2xl p-6 shadow-sm">
-          <div class="flex items-center gap-4 mb-4">
-            <div class="h-10 w-10 rounded-full bg-black text-white flex items-center justify-center font-semibold">
-              E
-            </div>
-            <div>
-              <h3 class="font-semibold">Emma Wilson</h3>
-              <p class="text-xs text-gray-500">October 10, 2025</p>
-            </div>
-          </div>
-          <p class="text-yellow-400 mb-2">★★★★☆</p>
-          <p class="text-sm leading-relaxed">
-            Received my free air fryer last week — couldn’t believe it when it arrived.
-            Thank you!
-          </p>
-        </article>
-      </div>
-    </section>
-  </main>
-
-  <!-- ================= FOOTER (NO EMAIL SIGNUP) ================= -->
-  <footer class="border-t border-gray-200 py-10 mt-4">
-    <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+  <!-- FOOTER -->
+  <footer class="max-w-7xl mx-auto px-6 py-16 text-black">
+    <div class="grid md:grid-cols-3 gap-8">
       <div>
-        <h3 class="text-lg font-semibold mb-2">Quick links</h3>
-        <ul class="space-y-1 text-sm">
-          <li><a href="terms.html" class="hover:underline">Terms &amp; Conditions</a></li>
-          <li><a href="privacy.html" class="hover:underline">Privacy Policies</a></li>
-          <li><a href="advertising.html" class="hover:underline">Advertising Discloser</a></li>
+        <h4 class="font-semibold mb-3">Quick links</h4>
+        <ul class="space-y-2">
+          <li><a class="underline" href="terms.html">Terms &amp; Conditions</a></li>
+          <li><a class="underline" href="privacy.html">Privacy Policies</a></li>
+          <li><a class="underline" href="advertising.html">Advertising Discloser</a></li>
         </ul>
       </div>
-      <p class="text-xs text-gray-500">
-        © <span id="yearSpan"></span> PrizePaths. All rights reserved.
-      </p>
     </div>
   </footer>
 
-  <!-- ================= SIGNUP MODAL ================= -->
-  <div id="signupModal" class="fixed inset-0 hidden bg-black/60 z-50">
-    <div class="bg-white max-w-md mx-auto mt-24 p-6 rounded-2xl">
-      <h3 class="text-2xl font-semibold mb-4">Create your PrizePaths account</h3>
-      <form id="signupForm" class="space-y-4">
-        <input required name="name" placeholder="Full name"
-               class="w-full border px-4 py-3 rounded-lg" />
-        <input required type="email" name="email" placeholder="Email address"
-               class="w-full border px-4 py-3 rounded-lg" />
-        <input required type="password" name="password"
-               placeholder="Create password (min 6 characters)"
-               minlength="6"
-               class="w-full border px-4 py-3 rounded-lg" />
-        <button class="w-full bg-black text-white py-3 rounded-lg font-semibold">
-          Create account
-        </button>
-        <p class="text-sm text-center">
-          Already have an account?
-          <a class="underline" href="login.html">Log in</a>
-        </p>
-      </form>
-      <button id="closeSignup" class="mt-3 text-sm underline">Close</button>
-    </div>
-  </div>
-
-  <!-- ================= SCRIPTS ================= -->
-
-  <!-- Firebase compat SDKs -->
+  <!-- Firebase -->
   <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
-
-  <!-- Your app logic -->
-  <script src="js/app.js"></script>
-
-  <!-- Page wiring -->
-  <script>
-    document.getElementById('yearSpan').textContent = new Date().getFullYear();
-
-    const agree = document.getElementById('agreeBox');
-    const modal = document.getElementById('signupModal');
-    const openBtn = document.getElementById('openSignup');
-    const closeBtn = document.getElementById('closeSignup');
-
-    if (openBtn) {
-      openBtn.addEventListener('click', () => {
-        if (!agree.checked) {
-          alert('Please agree to the terms and conditions first.');
-          return;
-        }
-        modal.classList.remove('hidden');
-      });
-    }
-
-    if (closeBtn) {
-      closeBtn.addEventListener('click', () => {
-        modal.classList.add('hidden');
-      });
-    }
-
-    const params = new URLSearchParams(window.location.search);
-    if (params.has('signup')) {
-      window.addEventListener('load', () => {
-        modal.classList.remove('hidden');
-      });
-    }
-
-    console.log("PrizePaths index loaded; JS active.");
-  </script>
+  <script defer src="js/app.js?v=13"></script>
 </body>
 </html>
+
 
 
 
