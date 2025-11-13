@@ -4,11 +4,11 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>PrizePaths — Discover & Win New Products</title>
-  <script src="https://cdn.tailwindcss.com?v=12"></script>
+  <script src="https://cdn.tailwindcss.com?v=13"></script>
   <style>
     html { scroll-behavior:smooth; }
     body { color:#000; background:#fff; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji"; }
-    #pp-debug, #pp-boot { display:none!important; } /* hide any dev banners */
+    #pp-debug, #pp-boot { display:none!important; }
   </style>
 </head>
 <body>
@@ -16,8 +16,8 @@
   <!-- HEADER -->
   <header class="max-w-7xl mx-auto px-6 py-6 flex items-center justify-between">
     <a href="index.html" class="flex items-center gap-3">
-      <!-- Replaced text with your logo -->
-      <img src="assets/img/prizepaths-logo.png?v=12" alt="PrizePaths" class="h-9 md:h-10 w-auto" />
+      <!-- Logo doubled in size -->
+      <img src="assets/img/prizepaths-logo.png?v=13" alt="PrizePaths" class="h-18 md:h-20 w-auto" />
     </a>
     <nav class="flex items-center gap-6">
       <a href="login.html" class="text-sm font-medium hover:underline">Log in</a>
@@ -25,20 +25,20 @@
     </nav>
   </header>
 
-  <!-- HERO (image first, aligned; text width constrained to fit “red lines”) -->
+  <!-- HERO (image first, aligned) -->
   <section id="signup" class="max-w-7xl mx-auto px-6 md:py-10">
-    <div class="grid md:grid-cols-12 gap-10 items-center">
+    <div class="grid md:grid-cols-12 gap-10 items-start">
       <!-- IMAGE LEFT -->
-      <div class="md:col-span-6 flex justify-center">
+      <div class="md:col-span-6 flex justify-center items-start">
         <img
-          src="assets/img/hero-collage.png?v=12"
+          src="assets/img/hero-collage.png?v=13"
           alt="PrizePaths Featured Products"
           class="w-[85%] md:w-[90%] lg:w-[95%] h-auto rounded-xl"
         />
       </div>
 
-      <!-- TEXT RIGHT (constrained width + tuned line length) -->
-      <div class="md:col-span-6 self-center">
+      <!-- TEXT RIGHT (aligned top with image) -->
+      <div class="md:col-span-6 flex flex-col justify-start md:mt-[-10px]">
         <div class="max-w-[560px]">
           <h1 class="text-[30px] sm:text-[36px] md:text-[44px] lg:text-[48px] leading-[1.08] font-serif mb-6">
             Discover &amp; Win New Products Every Week
@@ -48,7 +48,7 @@
             Brands want to hear your thoughts, Sign Up today to choose from hundreds of items.
           </p>
 
-          <!-- SIGNUP FORM (unchanged content/labels) -->
+          <!-- SIGNUP FORM -->
           <form id="signupForm" class="space-y-4 max-w-[480px]">
             <input required name="name" placeholder="Full Name*" class="w-full border border-black px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-black bg-white" />
             <input required type="email" name="email" placeholder="Email Address*" class="w-full border border-black px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-black bg-white" />
@@ -74,13 +74,13 @@
       <!-- IMAGE LEFT -->
       <div class="md:col-span-6 flex justify-center">
         <img
-          src="assets/img/beauty-collection.png?v=12"
+          src="assets/img/beauty-collection.png?v=13"
           alt="Beauty Product Group"
           class="w-[85%] md:w-[90%] lg:w-[95%] h-auto rounded-xl shadow-sm"
         />
       </div>
 
-      <!-- TEXT RIGHT (width constrained for clean lines) -->
+      <!-- TEXT RIGHT -->
       <div class="md:col-span-6 self-center">
         <div class="max-w-[560px]">
           <h2 class="font-serif text-[28px] sm:text-[34px] md:text-[42px] lg:text-[46px] leading-[1.12] mb-8">
@@ -102,7 +102,7 @@
   <section class="relative max-w-7xl mx-auto my-12 px-6">
     <div class="rounded-3xl overflow-hidden">
       <div class="h-[420px] bg-center bg-cover flex items-center justify-center"
-           style="background-image:url('assets/img/lock-bg.png?v=12')">
+           style="background-image:url('assets/img/lock-bg.png?v=13')">
         <div class="absolute inset-0 bg-black/45"></div>
         <div class="relative text-center text-white">
           <div class="text-6xl mb-4">🔒</div>
@@ -155,7 +155,7 @@
     </div>
   </section>
 
-  <!-- FOOTER (email form removed as requested) -->
+  <!-- FOOTER -->
   <footer class="max-w-7xl mx-auto px-6 py-16 text-black">
     <div class="grid md:grid-cols-3 gap-8">
       <div>
@@ -173,7 +173,7 @@
   <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
-  <script defer src="js/app.js?v=12"></script>
+  <script defer src="js/app.js?v=13"></script>
 </body>
 </html>
 
