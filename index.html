@@ -15,6 +15,7 @@
     <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
       <!-- Logo (double size) -->
       <div class="flex items-center gap-3">
+        <!-- logo file: assets/img/prizepaths-logo.png -->
         <img src="assets/img/prizepaths-logo.png"
              alt="PrizePaths"
              class="h-16 md:h-20 w-auto" />
@@ -28,19 +29,19 @@
   </header>
 
   <!-- ================= HERO / MAIN SIGNUP SECTION ================= -->
-  <!-- Half image / half text, text aligned with image top & bottom -->
   <main>
+    <!-- Half image / half text -->
     <section id="signup" class="max-w-6xl mx-auto px-6 pt-10 pb-16">
       <div class="grid md:grid-cols-2 gap-10 items-stretch">
         <!-- LEFT: Hero image -->
         <div class="flex items-center justify-center">
-          <!-- Replace with your grouped prize image file -->
-          <img src="assets/img/grouped-prize.png"
+          <!-- hero file: grouped prize.png (in project root) -->
+          <img src="grouped prize.png"
                alt="PrizePaths premium prizes"
                class="w-full max-w-xl rounded-xl object-contain" />
         </div>
 
-        <!-- RIGHT: Text block + CTA, stretched to match image height -->
+        <!-- RIGHT: Text + checkbox + button -->
         <div class="flex flex-col justify-between h-full">
           <div>
             <h1 class="text-4xl md:text-5xl font-serif mb-6 leading-tight">
@@ -59,7 +60,6 @@
           </div>
 
           <div>
-            <!-- Terms checkbox -->
             <label class="flex items-center gap-3 mb-4">
               <input id="agreeBox" type="checkbox" class="h-4 w-4 border-gray-300" />
               <span class="text-sm">
@@ -71,7 +71,6 @@
               </span>
             </label>
 
-            <!-- Main CTA button -->
             <button id="openSignup"
                     class="px-8 py-3 rounded-full bg-black text-white font-semibold text-lg disabled:opacity-50">
               Sign up now
@@ -114,8 +113,8 @@
 
         <!-- RIGHT: Supporting image -->
         <div class="flex items-center justify-center">
-          <!-- Replace with your beauty product group image file -->
-          <img src="assets/img/beauty-product-group.png"
+          <!-- section file: beauty product group.png (in project root) -->
+          <img src="beauty product group.png"
                alt="Beauty product group"
                class="w-full max-w-lg rounded-xl object-cover" />
         </div>
@@ -124,9 +123,9 @@
 
     <!-- ================= SIGN UP TO UNLOCK BANNER ================= -->
     <section class="relative w-full my-20">
+      <!-- banner file: Locked signup photo.png (in project root) -->
       <div class="relative h-[600px] md:h-[680px] bg-center bg-cover flex items-center justify-center"
-           style="background-image:url('assets/img/lock-bg.png?v=15')">
-        <!-- Dark overlay so text pops -->
+           style="background-image:url('Locked signup photo.png?v=1')">
         <div class="absolute inset-0 bg-black/60"></div>
 
         <div class="relative text-center text-white px-4 drop-shadow-lg">
@@ -152,7 +151,6 @@
       </h2>
 
       <div class="grid md:grid-cols-3 gap-8">
-        <!-- Review 1 -->
         <article class="border border-gray-200 rounded-2xl p-6 shadow-sm">
           <div class="flex items-center gap-4 mb-4">
             <div class="h-10 w-10 rounded-full bg-black text-white flex items-center justify-center font-semibold">
@@ -170,7 +168,6 @@
           </p>
         </article>
 
-        <!-- Review 2 -->
         <article class="border border-gray-200 rounded-2xl p-6 shadow-sm">
           <div class="flex items-center gap-4 mb-4">
             <div class="h-10 w-10 rounded-full bg-black text-white flex items-center justify-center font-semibold">
@@ -188,7 +185,6 @@
           </p>
         </article>
 
-        <!-- Review 3 -->
         <article class="border border-gray-200 rounded-2xl p-6 shadow-sm">
           <div class="flex items-center gap-4 mb-4">
             <div class="h-10 w-10 rounded-full bg-black text-white flex items-center justify-center font-semibold">
@@ -226,7 +222,7 @@
     </div>
   </footer>
 
-  <!-- ================= SIGNUP MODAL (ACTUAL ACCOUNT CREATION) ================= -->
+  <!-- ================= SIGNUP MODAL ================= -->
   <div id="signupModal" class="fixed inset-0 hidden bg-black/60 z-50">
     <div class="bg-white max-w-md mx-auto mt-24 p-6 rounded-2xl">
       <h3 class="text-2xl font-semibold mb-4">Create your PrizePaths account</h3>
@@ -253,17 +249,16 @@
 
   <!-- ================= SCRIPTS ================= -->
 
-  <!-- Firebase compat SDKs MUST be before app.js -->
+  <!-- Firebase compat SDKs -->
   <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
 
-  <!-- Your app logic (includes Firebase config and signup handling) -->
+  <!-- Your app logic -->
   <script src="js/app.js"></script>
 
-  <!-- Page wiring: modal controls, checkbox, etc. -->
+  <!-- Page wiring -->
   <script>
-    // Footer year
     document.getElementById('yearSpan').textContent = new Date().getFullYear();
 
     const agree = document.getElementById('agreeBox');
@@ -287,7 +282,6 @@
       });
     }
 
-    // Auto-open modal if ?signup=1 is present
     const params = new URLSearchParams(window.location.search);
     if (params.has('signup')) {
       window.addEventListener('load', () => {
@@ -299,6 +293,7 @@
   </script>
 </body>
 </html>
+
 
 
 
