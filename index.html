@@ -97,30 +97,38 @@
     </div>
   </section>
 
-  <!-- LOCK BANNER (clean, no blur, no tint, 100% white outside) -->
+  <!-- LOCK BANNER (blurred + darkened image, white around) -->
 <section class="relative max-w-7xl mx-auto my-12 px-6 bg-white">
-  <div class="rounded-3xl overflow-hidden bg-white">
-
-    <!-- CLEAN BACKGROUND IMAGE (no blur, no overlay) -->
+  <div class="relative h-[420px] rounded-3xl overflow-hidden bg-white">
+    
+    <!-- BLURRED BACKGROUND IMAGE -->
     <div
-      class="h-[420px] bg-center bg-cover flex items-center justify-center relative"
-      style="background-image:url('assets/img/lock-bg.png?v=13');"
-    >
-      <div class="relative text-center text-white z-10">
-        <div class="text-6xl mb-4 drop-shadow-[0_2px_6px_rgba(0,0,0,0.55)]">🔒</div>
-        <h3 class="text-3xl sm:text-4xl md:text-5xl font-serif mb-4 drop-shadow-[0_2px_6px_rgba(0,0,0,0.55)]">
-          SIGN UP TO UNLOCK
-        </h3>
-        <p class="mb-6 opacity-95 text-sm sm:text-base md:text-lg drop-shadow-[0_2px_6px_rgba(0,0,0,0.55)]">
-          The hundreds of other products we giveaway
-        </p>
-        <a
-          href="#signup"
-          class="px-8 py-3 rounded-full bg-white text-black font-semibold inline-block shadow-lg"
-        >
-          Sign Up Now
-        </a>
-      </div>
+      class="absolute inset-0 bg-center bg-cover"
+      style="
+        background-image:url('assets/img/lock-bg.png?v=13');
+        filter: blur(4px);
+        transform: scale(1.08);
+      "
+    ></div>
+
+    <!-- DARK OVERLAY ONLY ON IMAGE -->
+    <div class="absolute inset-0 bg-black/45"></div>
+
+    <!-- CONTENT (sharp, on top) -->
+    <div class="relative h-full flex flex-col items-center justify-center text-center text-white px-4 z-10">
+      <div class="text-6xl mb-4 drop-shadow-[0_2px_6px_rgba(0,0,0,0.6)]">🔒</div>
+      <h3 class="text-3xl sm:text-4xl md:text-5xl font-serif mb-4 drop-shadow-[0_2px_6px_rgba(0,0,0,0.6)]">
+        SIGN UP TO UNLOCK
+      </h3>
+      <p class="mb-6 opacity-95 text-sm sm:text-base md:text-lg drop-shadow-[0_2px_6px_rgba(0,0,0,0.6)]">
+        The hundreds of other products we giveaway
+      </p>
+      <a
+        href="#signup"
+        class="px-8 py-3 rounded-full bg-white text-black font-semibold inline-block shadow-lg"
+      >
+        Sign Up Now
+      </a>
     </div>
 
   </div>
