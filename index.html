@@ -97,27 +97,39 @@
     </div>
   </section>
 
-  <!-- LOCK BANNER (white background, no grey anywhere) -->
-  <section class="relative max-w-7xl mx-auto my-12 px-6 bg-white">
-    <div class="rounded-3xl overflow-hidden bg-white">
-      <div class="h-[420px] bg-center bg-cover flex items-center justify-center"
-           style="background-image:url('assets/img/lock-bg.png?v=13')">
-        <div class="absolute inset-0 bg-black/45"></div>
+  <!-- LOCK BANNER (blurred background image + white outside) -->
+<section class="relative max-w-7xl mx-auto my-12 px-6 bg-white">
+  <div class="rounded-3xl overflow-hidden bg-white">
+    
+    <div
+      class="relative h-[420px] bg-center bg-cover flex items-center justify-center"
+      style="background-image:url('assets/img/lock-bg.png?v=13'); filter: blur(4px); transform: scale(1.05);"
+    >
+    </div>
 
-        <div class="relative text-center text-white">
-          <div class="text-6xl mb-4">🔒</div>
-          <h3 class="text-3xl sm:text-4xl md:text-5xl font-serif mb-4">SIGN UP TO UNLOCK</h3>
-          <p class="mb-6 opacity-90 text-sm sm:text-base md:text-lg">
-            The hundreds of other products we giveaway
-          </p>
-          <a href="#signup"
-             class="px-8 py-3 rounded-full bg-white text-black font-semibold inline-block">
-            Sign Up Now
-          </a>
-        </div>
+    <!-- DARK OVERLAY + CONTENT (sharp & on top of blur) -->
+    <div class="absolute inset-0 rounded-3xl overflow-hidden flex items-center justify-center">
+      <div class="absolute inset-0 bg-black/40"></div>
+
+      <div class="relative text-center text-white z-10">
+        <div class="text-6xl mb-4">🔒</div>
+        <h3 class="text-3xl sm:text-4xl md:text-5xl font-serif mb-4">SIGN UP TO UNLOCK</h3>
+        <p class="mb-6 opacity-90 text-sm sm:text-base md:text-lg">
+          The hundreds of other products we giveaway
+        </p>
+        <a
+          href="#signup"
+          class="px-8 py-3 rounded-full bg-white text-black font-semibold inline-block"
+        >
+          Sign Up Now
+        </a>
       </div>
     </div>
-  </section>
+
+  </div>
+</section>
+
+
 
   <!-- REVIEWS -->
   <section class="max-w-7xl mx-auto px-6 py-16">
