@@ -3,24 +3,82 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>PrizePaths Survey</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <title>PrizePaths — Survey</title>
+  <script src="https://cdn.tailwindcss.com?v=13"></script>
   <style>
-    body { background:white; }
+    body {
+      color:#000;
+      background:#fff;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter,
+                   Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
   </style>
 </head>
+<body class="min-h-screen flex flex-col bg-white">
 
-<body>
-  <header class="p-4 text-center font-bold text-xl">PrizePaths</header>
+  <!-- HEADER (same style as main site) -->
+  <header class="max-w-7xl mx-auto w-full px-6 py-4 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-3">
+      <img
+        src="assets/img/prizepaths-logo.png?v=13"
+        alt="PrizePaths"
+        class="h-8 sm:h-10 w-auto"
+      />
+    </a>
+    <nav class="flex items-center gap-6 text-sm font-medium">
+      <a href="login.html" class="hover:underline">Log in</a>
+      <a href="index.html#signup" class="hover:underline">Sign up</a>
+    </nav>
+  </header>
 
-  <div id="surveyApp"></div>
+  <!-- MAIN SURVEY AREA -->
+  <main class="flex-1 flex items-center justify-center px-4">
+    <!-- Active question container -->
+    <div id="question-container" class="max-w-xl w-full text-center">
+      <!-- Question text gets injected here by survey.js -->
+      <h1
+        id="question-title"
+        class="text-[22px] sm:text-[26px] md:text-[30px] font-semibold mb-10"
+      ></h1>
 
-  <footer class="text-center text-xs text-gray-500 mt-20 p-6">
-    Some links may be affiliate — we may earn a small commission.
+      <!-- Optional image (Goodie Box / Nurture Life) -->
+      <div id="question-image" class="mb-4 hidden">
+        <!-- survey.js will inject an <img> tag here when needed -->
+      </div>
+
+      <!-- Optional description text under the image -->
+      <p
+        id="question-description"
+        class="text-sm sm:text-base text-gray-700 mb-6 hidden"
+      ></p>
+
+      <!-- Answer buttons go here -->
+      <div id="options" class="space-y-4"></div>
+    </div>
+
+    <!-- Final “thank you / offers” screen (survey.js will unhide and fill this) -->
+    <div id="survey-complete" class="max-w-4xl w-full hidden"></div>
+  </main>
+
+  <!-- FOOTER (same style as main site) -->
+  <footer class="max-w-7xl mx-auto w-full px-6 py-10 text-black border-t border-gray-200">
+    <div class="grid md:grid-cols-3 gap-8">
+      <div>
+        <h4 class="font-semibold mb-3 text-lg">Quick links</h4>
+        <ul class="space-y-2 text-sm sm:text-base">
+          <li><a class="underline" href="terms.html">Terms &amp; Conditions</a></li>
+          <li><a class="underline" href="privacy.html">Privacy Policies</a></li>
+          <li><a class="underline" href="advertising.html">Advertising Discloser</a></li>
+        </ul>
+      </div>
+    </div>
   </footer>
 
-  <script src="js/survey.js?v=13"></script>
+  <!-- Survey logic -->
+  <script src="js/survey.js?v=13" defer></script>
 </body>
 </html>
+
+
 
 
