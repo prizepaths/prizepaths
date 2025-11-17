@@ -7,75 +7,272 @@
   <script src="https://cdn.tailwindcss.com?v=13"></script>
   <style>
     body {
-      color:#000;
-      background:#fff;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter,
                    Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background:#fff;
+      color:#000;
+    }
+    .survey-btn {
+      @apply w-full bg-black text-white py-4 rounded-2xl text-lg sm:text-xl font-semibold;
     }
   </style>
 </head>
-<body class="min-h-screen flex flex-col bg-white">
+<body class="min-h-screen flex flex-col">
 
   <!-- HEADER (same style as main site) -->
-  <header class="max-w-7xl mx-auto w-full px-6 py-4 flex items-center justify-between">
-    <a href="index.html" class="flex items-center gap-3">
-      <img
-        src="assets/img/prizepaths-logo.png?v=13"
-        alt="PrizePaths"
-        class="h-8 sm:h-10 w-auto"
-      />
-    </a>
-    <nav class="flex items-center gap-6 text-sm font-medium">
-      <a href="login.html" class="hover:underline">Log in</a>
-      <a href="index.html#signup" class="hover:underline">Sign up</a>
-    </nav>
+  <header class="w-full border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3">
+        <img
+          src="assets/img/prizepaths-logo.png?v=13"
+          alt="PrizePaths"
+          class="h-10 sm:h-12 md:h-14 w-auto"
+        />
+      </a>
+      <nav class="flex items-center gap-6 text-sm font-medium">
+        <a href="login.html" class="hover:underline">Log in</a>
+        <a href="index.html#signup" class="hover:underline">Sign up</a>
+      </nav>
+    </div>
   </header>
 
   <!-- MAIN SURVEY AREA -->
-  <main class="flex-1 flex items-center justify-center px-4">
-    <!-- Active question container -->
-    <div id="question-container" class="max-w-xl w-full text-center">
-      <!-- Question text gets injected here by survey.js -->
-      <h1
-        id="question-title"
-        class="text-[22px] sm:text-[26px] md:text-[30px] font-semibold mb-10"
-      ></h1>
-
-      <!-- Optional image (Goodie Box / Nurture Life) -->
-      <div id="question-image" class="mb-4 hidden">
-        <!-- survey.js will inject an <img> tag here when needed -->
-      </div>
-
-      <!-- Optional description text under the image -->
-      <p
-        id="question-description"
-        class="text-sm sm:text-base text-gray-700 mb-6 hidden"
-      ></p>
-
-      <!-- Answer buttons go here -->
-      <div id="options" class="space-y-4"></div>
+  <main class="flex-1 flex items-center justify-center px-4 py-10">
+    <div id="survey-root" class="w-full max-w-3xl text-center">
+      <!-- content injected by JS -->
     </div>
-
-    <!-- Final “thank you / offers” screen (survey.js will unhide and fill this) -->
-    <div id="survey-complete" class="max-w-4xl w-full hidden"></div>
   </main>
 
-  <!-- FOOTER (same style as main site) -->
-  <footer class="max-w-7xl mx-auto w-full px-6 py-10 text-black border-t border-gray-200">
-    <div class="grid md:grid-cols-3 gap-8">
-      <div>
-        <h4 class="font-semibold mb-3 text-lg">Quick links</h4>
-        <ul class="space-y-2 text-sm sm:text-base">
-          <li><a class="underline" href="terms.html">Terms &amp; Conditions</a></li>
-          <li><a class="underline" href="privacy.html">Privacy Policies</a></li>
-          <li><a class="underline" href="advertising.html">Advertising Discloser</a></li>
-        </ul>
+  <!-- FOOTER (quick links only) -->
+  <footer class="w-full border-t border-gray-200 mt-8">
+    <div class="max-w-7xl mx-auto px-6 py-10 text-black">
+      <div class="grid md:grid-cols-3 gap-8">
+        <div>
+          <h4 class="font-semibold mb-3">Quick links</h4>
+          <ul class="space-y-2">
+            <li><a class="underline" href="terms.html">Terms &amp; Conditions</a></li>
+            <li><a class="underline" href="privacy.html">Privacy Policies</a></li>
+            <li><a class="underline" href="advertising.html">Advertising Discloser</a></li>
+          </ul>
+        </div>
       </div>
     </div>
   </footer>
 
-  <!-- Survey logic -->
-  <script src="js/survey.js?v=13" defer></script>
+  <!-- SURVEY LOGIC -->
+  <script>
+    // --- Survey definition ---
+    const DGBOX_URL =
+      "https://la.luxeads.com/aff_c?offer_id=4200&aff_id=4555";
+    const NURTURE_URL =
+      "https://afflat3e1.com/trk/lnk/CBC3F3EB-4292-4F6A-99B5-397832E8F242/?o=30729&c=918277&a=775201&k=F618F6F5BFE3B2514825E0019EEDF6EC&l=35329";
+
+    const steps = [
+      {
+        id: "q1",
+        question: "Do you want to test & receive free products?",
+        answers: [
+          { label: "Absolutely" },
+          { label: "YES I'd love to" },
+          { label: "NO I'll miss out" }
+        ]
+      },
+      {
+        id: "q2",
+        question: "When was the last time you did a product test?",
+        answers: [
+          { label: "Within the last 6 months" },
+          { label: "Within the last year" },
+          { label: "Over a year ago" },
+          { label: "I never have" }
+        ]
+      },
+      {
+        id: "q3",
+        question: "Do you enjoy getting free products to try?",
+        answers: [
+          { label: "YES, absolutely" },
+          { label: "Yes, sometimes" },
+          { label: "NO, not for me" }
+        ]
+      },
+      {
+        id: "q4",
+        question: "Who do you shop for the most?",
+        answers: [
+          { label: "Myself" },
+          { label: "Partner" },
+          { label: "Children" },
+          { label: "Friends" },
+          { label: "Pets" }
+        ]
+      },
+      {
+        id: "q5",
+        question: "Which products are most important to you?",
+        answers: [
+          { label: "Health / Fitness" },
+          { label: "Beauty" },
+          { label: "Clothing" },
+          { label: "Food" },
+          { label: "Subscriptions" }
+        ]
+      },
+      {
+        id: "q6",
+        question: "Do you want to know about new products to test & other freebies?",
+        answers: [
+          { label: "Yes please" },
+          { label: "No, I'll miss out" }
+        ]
+      },
+      {
+        id: "q7",
+        question:
+          "If a company offered a 100% free sample box or heavily discounted trial, would you want to see it?",
+        image: "assets/img/daily-goodie-box.png",
+        imageAlt: "Free sample box",
+        answers: [
+          {
+            label: "Yes please",
+            action: () => window.open(DGBOX_URL, "_blank")
+          },
+          { label: "No thanks" }
+        ]
+      },
+      {
+        id: "q8",
+        question: "How much do you spend on groceries each week?",
+        answers: [
+          { label: "Under $100" },
+          { label: "$100 – $199" },
+          { label: "$200 – $300" },
+          { label: "$300 +" }
+        ]
+      },
+      {
+        id: "q9",
+        question: "Would you like a way to save time & money on shopping?",
+        answers: [
+          { label: "Yes, that sounds great" },
+          { label: "No thanks" }
+        ]
+      },
+      {
+        id: "q10",
+        question:
+          "Would you like to save time and money with Nurture Life 50% off?",
+        image: "assets/img/nurture-life.png",
+        imageAlt: "Nurture Life meals",
+        description:
+          "Nurture Life delivers healthy, ready-to-eat meals for children aged 8 months up to 10 years old — nutritious food right to your door, ready in as little as one minute.",
+        answers: [
+          {
+            label: "YES please",
+            action: () => window.open(NURTURE_URL, "_blank")
+          },
+          { label: "No" }
+        ]
+      }
+    ];
+
+    const root = document.getElementById("survey-root");
+    let currentStep = 0;
+
+    function renderStep() {
+      if (currentStep >= steps.length) {
+        renderThankYou();
+        return;
+      }
+
+      const step = steps[currentStep];
+      root.innerHTML = "";
+
+      const container = document.createElement("div");
+      container.className = "space-y-6";
+
+      const q = document.createElement("h1");
+      q.className = "text-2xl sm:text-3xl md:text-4xl font-semibold mb-6";
+      q.textContent = step.question;
+      container.appendChild(q);
+
+      if (step.image) {
+        const imgWrap = document.createElement("div");
+        imgWrap.className = "flex justify-center mb-4";
+        const img = document.createElement("img");
+        img.src = step.image;
+        img.alt = step.imageAlt || "";
+        img.className = "max-h-52 w-auto rounded-xl shadow-sm";
+        imgWrap.appendChild(img);
+        container.appendChild(imgWrap);
+      }
+
+      if (step.description) {
+        const desc = document.createElement("p");
+        desc.className =
+          "max-w-xl mx-auto text-sm sm:text-base text-gray-700 mb-4";
+        desc.textContent = step.description;
+        container.appendChild(desc);
+      }
+
+      const buttonsWrap = document.createElement("div");
+      buttonsWrap.className = "space-y-4 max-w-xl mx-auto";
+
+      step.answers.forEach(ans => {
+        const btn = document.createElement("button");
+        btn.className =
+          "w-full bg-black text-white py-4 rounded-2xl text-lg sm:text-xl font-semibold hover:bg-gray-800";
+        btn.textContent = ans.label;
+        btn.addEventListener("click", () => {
+          if (typeof ans.action === "function") {
+            try { ans.action(); } catch (e) { console.error(e); }
+          }
+          currentStep += 1;
+          renderStep();
+        });
+        buttonsWrap.appendChild(btn);
+      });
+
+      container.appendChild(buttonsWrap);
+      root.appendChild(container);
+    }
+
+    function renderThankYou() {
+      root.innerHTML = "";
+
+      const box = document.createElement("div");
+      box.className = "space-y-6 max-w-2xl mx-auto";
+
+      const h = document.createElement("h1");
+      h.className = "text-3xl sm:text-4xl font-semibold";
+      h.textContent = "All done!";
+      box.appendChild(h);
+
+      const p1 = document.createElement("p");
+      p1.className = "text-lg";
+      p1.textContent = "Congratulations — you are now a PrizePaths member.";
+      box.appendChild(p1);
+
+      const p2 = document.createElement("p");
+      p2.className = "text-base text-gray-800";
+      p2.textContent =
+        "You now have exclusive access to hundreds of offers. Check out our premium offers and see what you can test next.";
+      box.appendChild(p2);
+
+      const btn = document.createElement("a");
+      btn.href = "index.html#signup";
+      btn.className =
+        "inline-flex items-center justify-center px-8 py-3 bg-black text-white rounded-2xl text-lg font-semibold hover:bg-gray-800";
+      btn.textContent = "View premium offers";
+      box.appendChild(btn);
+
+      root.appendChild(box);
+    }
+
+    // start survey
+    renderStep();
+  </script>
+
 </body>
 </html>
 
