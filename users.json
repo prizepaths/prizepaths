@@ -1,0 +1,11 @@
+{"users": [
+{
+  "localId": "ZvkQ7NibsvdEbqx6KV4Dq04NnCC2",
+  "email": "test+cli1@prizepaths.com",
+  "emailVerified": false,
+  "passwordHash": "7b4fiyIF4x77Hgk9VS0Cyfx1BHy2rN9b0qv46T0xIU0xFGzbNGSx68lAzeISitL7M8PmTcp6eCgnTauJ3LPMPg==",
+  "salt": "yyAwY1IbQsAGHA==",
+  "lastSignedInAt": "1762828675105",
+  "createdAt": "1762828675105",
+  "providerUserInfo": []
+}]}

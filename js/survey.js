@@ -1,366 +1,207 @@
-// PrizePaths member survey (generic, no PS5 images)
+/****************************************************
+ * PrizePaths — Full Survey Logic (Clean Version)
+ * Works like the PS5 survey but no progress bar.
+ ****************************************************/
 
-// Guard: user must be logged in
-auth.onAuthStateChanged((user) => {
-  if (!user) {
-    console.warn("[PrizePaths] No user, redirecting to login.");
-    window.location.href = "login.html";
-  }
-});
+// Image Paths
+const dailyGoodieImage = "assets/img/daily-goodie-box.png";
+const nurtureLifeImage = "assets/img/nurture-life.png";
 
-// SURVEY QUESTIONS
-// NOTE: daily-goodie-box.png and nurture-life.png should live in assets/img/
-const questions = [
-  // Q1
+// Q&A Structure
+const surveyQuestions = [
   {
-    id: "want_free_products",
-    title: "Do you want to test & receive free products?",
-    text: "Let us know how excited you are about trying new products.",
-    type: "single",
+    question: "Do you want to test & receive free products?",
     options: [
-      { label: "Absolutely", value: "absolutely" },
-      { label: "Yes, I'd love to", value: "yes_love_to" },
-      { label: "No, I'll miss out", value: "no_miss_out" }
+      "Absolutely",
+      "YES I'd love to",
+      "NO I'll miss out"
     ]
   },
 
-  // Q2
   {
-    id: "last_product_test",
-    title: "When was the last time you did a product test?",
-    text: "Think about the last time you received a product to try and review.",
-    type: "single",
+    question: "When was the last time you did a product test?",
     options: [
-      { label: "Within the last 6 months", value: "within_6_months" },
-      { label: "Within the last year", value: "within_year" },
-      { label: "Over a year ago", value: "over_year" },
-      { label: "I never have", value: "never" }
+      "Within the last 6 months",
+      "Within the last year",
+      "Over a year ago",
+      "I never have"
     ]
   },
 
-  // Q3
   {
-    id: "enjoy_free_products",
-    title: "Do you enjoy getting free products to try?",
-    text: "Be honest — we want to know if you actually enjoy samples and test products.",
-    type: "single",
+    question: "Do you enjoy getting free products to try?",
     options: [
-      { label: "Yes, absolutely", value: "yes_absolutely" },
-      { label: "Yes, sometimes", value: "yes_sometimes" },
-      { label: "No, not for me", value: "no_not_for_me" }
+      "YES, Absolutely",
+      "Yes, Sometimes",
+      "NO, Not for me"
     ]
   },
 
-  // Q4
   {
-    id: "shop_for_most",
-    title: "Who do you shop for the most?",
-    text: "Choose the option that best describes your main shopping focus.",
-    type: "single",
+    question: "Who do you shop for the most?",
     options: [
-      { label: "Myself", value: "myself" },
-      { label: "Partner", value: "partner" },
-      { label: "Children", value: "children" },
-      { label: "Friends", value: "friends" },
-      { label: "Pets", value: "pets" }
+      "Myself",
+      "Partner",
+      "Children",
+      "Friends",
+      "Pets"
     ]
   },
 
-  // Q5
   {
-    id: "products_important",
-    title: "Which products are most important to you?",
-    text: "You can choose more than one category if they all matter to you.",
-    type: "multi",
+    question: "Which products are most important to you?",
     options: [
-      { label: "Health / Fitness", value: "health_fitness" },
-      { label: "Beauty", value: "beauty" },
-      { label: "Clothing", value: "clothing" },
-      { label: "Food", value: "food" },
-      { label: "Subscriptions", value: "subscriptions" }
+      "Health / Fitness",
+      "Beauty",
+      "Clothing",
+      "Food",
+      "Subscriptions"
     ]
   },
 
-  // Q6
   {
-    id: "know_about_new_products",
-    title: "Do you want to know about new products to test & other freebies?",
-    text: "We can let you know when new test products and freebies are available.",
-    type: "single",
+    question: "Do you want to know about new products to test & other freebies?",
     options: [
-      { label: "Yes, please", value: "yes_please" },
-      { label: "No, I'll miss out", value: "no_miss_out" }
+      "Yes Please",
+      "No I'll miss out"
     ]
   },
 
-  // Q7
   {
-    id: "free_sample_box",
-    title: "If a company offered a 100% free sample box or heavily discounted trial, would you want to see it?",
-    text: "Some brands run full-size box trials or heavily discounted offers.",
-    type: "single",
+    question: "If a company offered a 100% free sample box or heavily discounted trial, would you want to see it?",
     options: [
-      { label: "Yes", value: "yes" },
-      { label: "No", value: "no" }
+      "Yes",
+      "No"
     ]
   },
 
-  // Q8 – Daily Goodie Box
   {
-    id: "daily_goodie_box",
-    title: "Would you like to receive a free Daily Goodie Box?",
-    text: "Daily Goodie Box sends free boxes with assorted samples when you qualify.",
-    type: "single",
-    image: "assets/img/daily-goodie-box.png?v=13",
-    imageAlt: "Daily Goodie Box",
+    question: "Do you want to receive a Free Daily Goodie Box?",
+    image: dailyGoodieImage,
     options: [
       {
-        label: "Yes, please",
-        value: "yes_dgb",
-        // Open this when selected, then move to next question
-        offerUrl: "https://la.luxeads.com/aff_c?offer_id=4200&aff_id=4555"
+        label: "Yes Please",
+        action: () => {
+          window.open(
+            "https://la.luxeads.com/aff_c?offer_id=4200&aff_id=4555",
+            "_blank"
+          );
+        }
       },
-      { label: "No, thanks", value: "no_dgb" }
+      { label: "No Thanks" }
     ]
   },
 
-  // Q9
   {
-    id: "grocery_spend",
-    title: "How much do you spend on groceries each week?",
-    text: "An estimate is fine — we just want a rough idea.",
-    type: "single",
+    question: "How much do you spend on groceries each week?",
     options: [
-      { label: "Under $100", value: "under_100" },
-      { label: "$100 – $199", value: "100_199" },
-      { label: "$200 – $300", value: "200_300" },
-      { label: "$300+", value: "300_plus" }
+      "Under $100",
+      "$100 - $199",
+      "$200 - $300",
+      "$300+"
     ]
   },
 
-  // Q10
   {
-    id: "save_time_money_shopping",
-    title: "Would you like a way to save time & money on shopping?",
-    text: "Some offers focus on saving you time, others save you money — some do both.",
-    type: "single",
+    question: "Would you like a way to save time & money on shopping?",
     options: [
-      { label: "Yes, that sounds great", value: "yes_sounds_great" },
-      { label: "No, thanks", value: "no_thanks" }
+      "Yes that sounds great",
+      "No thanks"
     ]
   },
 
-  // Q11 – Nurture Life
   {
-    id: "nurture_life_offer",
-    title: "Would you like to save time & money with Nurture Life (50% off)?",
-    text: "Nurture Life delivers healthy, ready-to-eat meals for children aged 8 months up to 10 years. "
-        + "Nutritious food delivered to your door, ready in as little as one minute.",
-    type: "single",
-    image: "assets/img/nurture-life.png?v=13",
-    imageAlt: "Nurture Life meals",
+    question: "Would you like to save time & money on Nurture Life (50% off)?",
+    description: "Nurture Life delivers healthy, ready-to-eat meals for children aged 8 months to 10 years. Fresh, nutritious meals delivered to your door and ready in minutes.",
+    image: nurtureLifeImage,
     options: [
       {
-        label: "Yes, please",
-        value: "yes_nurture_life",
-        offerUrl: "https://afflat3e1.com/trk/lnk/CBC3F3EB-4292-4F6A-99B5-397832E8F242/?o=30729&c=918277&a=775201&k=F618F6F5BFE3B2514825E0019EEDF6EC&l=35329"
+        label: "YES Please",
+        action: () => {
+          window.open(
+            "https://afflat3e1.com/trk/lnk/CBC3F3EB-4292-4F6A-99B5-397832E8F242/?o=30729&c=918277&a=775201&k=F618F6F5BFE3B2514825E0019EEDF6EC&l=35329",
+            "_blank"
+          );
+        }
       },
-      { label: "No", value: "no_nurture_life" }
+      { label: "NO" }
     ]
-  }
+  },
 ];
 
-let currentIndex = 0;
-const responses = {};
+// Thank You Page
+function showThankYou() {
+  const app = document.getElementById("surveyApp");
+  app.innerHTML = `
+    <div class="text-center mt-20">
+      <h1 class="text-3xl font-serif mb-6">ALL DONE</h1>
+      <p class="text-lg mb-6">Congratulations — you are now a PrizePaths member.</p>
+      <p class="text-md mb-10">You now have exclusive access to hundreds of offers.</p>
 
-// DOM references
-const cardEl      = document.getElementById("pp-question-card");
-const contentEl   = document.getElementById("pp-question-content");
-const completeEl  = document.getElementById("pp-complete");
-const backBtn     = document.getElementById("pp-btn-back");
-const nextBtn     = document.getElementById("pp-btn-next");
-const skipBtn     = document.getElementById("pp-btn-skip");
-const progressLbl = document.getElementById("pp-progress-label");
-const progressPct = document.getElementById("pp-progress-percent");
-const progressBar = document.getElementById("pp-progress-bar");
+      <a href="offers.html" class="px-6 py-3 bg-black text-white rounded-xl text-lg font-semibold">
+        View Premium Offers
+      </a>
 
-function updateProgress() {
-  const total = questions.length;
-  const qNum  = currentIndex + 1;
-  const pct   = Math.round((qNum - 1) / total * 100);
-
-  if (progressLbl) progressLbl.textContent = `Question ${qNum} of ${total}`;
-  if (progressPct) progressPct.textContent = `${pct}%`;
-  if (progressBar) progressBar.style.width = `${pct}%`;
+      <p class="mt-10 text-sm opacity-70">® PrizePaths</p>
+    </div>
+  `;
 }
+
+// Render Question UI
+let currentQuestion = 0;
 
 function renderQuestion() {
-  const q = questions[currentIndex];
-  if (!q || !contentEl) return;
+  const app = document.getElementById("surveyApp");
+  const q = surveyQuestions[currentQuestion];
 
-  updateProgress();
+  let imageHTML = q.image ? `
+      <img src="${q.image}" class="mx-auto w-64 rounded-xl mb-6 shadow-lg"/>
+  ` : "";
 
-  if (backBtn) backBtn.disabled = currentIndex === 0;
-  if (nextBtn) {
-    nextBtn.textContent = currentIndex === questions.length - 1 ? "Finish →" : "Next →";
-  }
+  let descriptionHTML = q.description ? `
+      <p class="mb-4 text-gray-700 text-sm">${q.description}</p>
+  ` : "";
 
-  const stored = responses[q.id];
-  let html = "";
-
-  html += `<h2 class="text-xl sm:text-2xl font-semibold mb-3">${q.title}</h2>`;
-  html += `<p class="text-sm sm:text-base text-gray-700 mb-4">${q.text}</p>`;
-
-  if (q.image) {
-    html += `
-      <div class="mb-4 flex justify-center">
-        <img src="${q.image}" alt="${q.imageAlt || ""}"
-             class="max-h-52 w-auto rounded-xl shadow-sm" />
-      </div>
-    `;
-  }
-
-  if (q.type === "single") {
-    html += `<div class="space-y-3">`;
-    q.options.forEach((opt, idx) => {
-      const inputId = `${q.id}_${idx}`;
-      const checked = stored === opt.value ? "checked" : "";
-      html += `
-        <label for="${inputId}" class="flex items-start gap-3 text-sm sm:text-base cursor-pointer">
-          <input
-            id="${inputId}"
-            type="radio"
-            name="${q.id}"
-            value="${opt.value}"
-            class="mt-1 h-4 w-4 border-gray-400"
-            ${checked}
-          />
-          <span>${opt.label}</span>
-        </label>
+  let optionsHTML = q.options.map(opt => {
+    if (typeof opt === "string") {
+      return `
+        <button class="w-full md:w-1/2 mx-auto block mb-4 px-6 py-3 bg-black text-white rounded-xl hover:bg-gray-800"
+          onclick="nextQuestion()">
+          ${opt}
+        </button>
       `;
-    });
-    html += `</div>`;
-  } else if (q.type === "multi") {
-    const arr = Array.isArray(stored) ? stored : [];
-    html += `<div class="space-y-3">`;
-    q.options.forEach((opt, idx) => {
-      const inputId = `${q.id}_${idx}`;
-      const checked = arr.includes(opt.value) ? "checked" : "";
-      html += `
-        <label for="${inputId}" class="flex items-start gap-3 text-sm sm:text-base cursor-pointer">
-          <input
-            id="${inputId}"
-            type="checkbox"
-            name="${q.id}"
-            value="${opt.value}"
-            class="mt-1 h-4 w-4 border-gray-400"
-            ${checked}
-          />
-          <span>${opt.label}</span>
-        </label>
+    } else {
+      return `
+        <button class="w-full md:w-1/2 mx-auto block mb-4 px-6 py-3 bg-black text-white rounded-xl hover:bg-gray-800"
+          onclick="
+            ${opt.action ? "(" + opt.action.toString() + ")()" : ""}
+            nextQuestion();
+          ">
+          ${opt.label}
+        </button>
       `;
-    });
-    html += `</div>`;
-  }
-
-  contentEl.innerHTML = html;
-}
-
-function getCurrentResponse() {
-  const q = questions[currentIndex];
-  if (!q) return null;
-
-  if (q.type === "single") {
-    const selected = document.querySelector(`input[name="${q.id}"]:checked`);
-    return selected ? selected.value : null;
-  }
-
-  if (q.type === "multi") {
-    const selected = Array.from(document.querySelectorAll(`input[name="${q.id}"]:checked`));
-    return selected.map((el) => el.value);
-  }
-
-  return null;
-}
-
-function maybeOpenOfferLinks(q, value) {
-  if (!q || !q.options) return;
-
-  if (q.type === "single") {
-    const opt = q.options.find(o => o.value === value);
-    if (opt && opt.offerUrl) {
-      window.open(opt.offerUrl, "_blank");
     }
-  } else if (q.type === "multi" && Array.isArray(value)) {
-    q.options.forEach(opt => {
-      if (opt.offerUrl && value.includes(opt.value)) {
-        window.open(opt.offerUrl, "_blank");
-      }
-    });
-  }
+  }).join("");
+
+  app.innerHTML = `
+    <div class="max-w-2xl mx-auto text-center mt-24 px-6">
+      ${imageHTML}
+      <h2 class="text-2xl font-semibold mb-6">${q.question}</h2>
+      ${descriptionHTML}
+      ${optionsHTML}
+    </div>
+  `;
 }
 
-function goNext(skipCurrent = false) {
-  const q = questions[currentIndex];
-  if (!q) return;
-
-  if (!skipCurrent) {
-    const value = getCurrentResponse();
-    if (value === null || (Array.isArray(value) && value.length === 0)) {
-      alert("Please select an option or tap Skip for this question.");
-      return;
-    }
-    responses[q.id] = value;
-    maybeOpenOfferLinks(q, value);
+// Next Question
+function nextQuestion() {
+  currentQuestion++;
+  if (currentQuestion >= surveyQuestions.length) {
+    showThankYou();
   } else {
-    responses[q.id] = null;
-  }
-
-  if (currentIndex < questions.length - 1) {
-    currentIndex++;
     renderQuestion();
-  } else {
-    finishSurvey();
   }
 }
 
-function goBack() {
-  if (currentIndex === 0) return;
-  currentIndex--;
-  renderQuestion();
-}
-
-async function finishSurvey() {
-  try {
-    const user = auth.currentUser;
-    if (user && db) {
-      await db.collection("users").doc(user.uid).set(
-        {
-          surveyCompleted: true,
-          surveyResponses: responses,
-          surveyCompletedAt: firebase.firestore.FieldValue.serverTimestamp(),
-        },
-        { merge: true }
-      );
-    }
-  } catch (err) {
-    console.error("[PrizePaths] Error saving survey:", err);
-  }
-
-  if (cardEl) cardEl.classList.add("hidden");
-  if (completeEl) completeEl.classList.remove("hidden");
-
-  if (progressBar) progressBar.style.width = "100%";
-  if (progressPct) progressPct.textContent = "100%";
-  if (progressLbl) progressLbl.textContent = "Completed";
-}
-
-// Wire buttons
-if (nextBtn) nextBtn.addEventListener("click", () => goNext(false));
-if (skipBtn) skipBtn.addEventListener("click", () => goNext(true));
-if (backBtn) backBtn.addEventListener("click", goBack);
-
-// First render
-document.addEventListener("DOMContentLoaded", () => {
-  renderQuestion();
-});
+// Start Survey
+document.addEventListener("DOMContentLoaded", renderQuestion);
