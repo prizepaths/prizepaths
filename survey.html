@@ -11,9 +11,6 @@
       background:#fff;
       color:#000;
     }
-    .survey-btn {
-      @apply w-full bg-black text-white py-3 rounded-xl text-base sm:text-lg font-semibold;
-    }
   </style>
 </head>
 
@@ -37,9 +34,9 @@
   </header>
 
   <!-- MAIN SECTION -->
-  <main class="flex-1 flex items-center justify-center px-4 py-6">
-    <div id="survey-root" class="w-full max-w-lg text-center">
-      <!-- Content injected via JS -->
+  <main class="flex-1 flex items-start justify-center px-4 py-10">
+    <div id="survey-root" class="w-full max-w-3xl text-center mt-6">
+      <!-- JS will render survey here -->
     </div>
   </main>
 
@@ -48,7 +45,7 @@
     <div class="max-w-7xl mx-auto px-6 py-10 text-black">
       <h4 class="font-semibold mb-3">Quick links</h4>
       <ul class="space-y-2">
-        <li><a class="underline" href="terms.html">Terms & Conditions</a></li>
+        <li><a class="underline" href="terms.html">Terms &amp; Conditions</a></li>
         <li><a class="underline" href="privacy.html">Privacy Policies</a></li>
         <li><a class="underline" href="advertising.html">Advertising Discloser</a></li>
       </ul>
@@ -118,7 +115,7 @@
         question: "Do you want to receive a Free Daily Goodie Box?",
         image: "assets/img/daily-goodie-box.png",
         answers: [
-          { 
+          {
             label: "Yes Please",
             action: () => window.open(DGBOX_URL, "_blank")
           },
@@ -142,12 +139,12 @@
         ]
       },
       {
-        question: "Would you like to Save Time and money on Nurture Life 50% off?",
+        question: "Would you like to save time and money on Nurture Life 50% off?",
         description:
           "Nurture Life delivers healthy, ready-to-eat meals for children aged 8 months to 10 years.",
         image: "assets/img/nurture-life.png",
         answers: [
-          { 
+          {
             label: "YES Please",
             action: () => window.open(NURTURE_URL, "_blank")
           },
@@ -166,10 +163,10 @@
       root.innerHTML = "";
 
       const wrap = document.createElement("div");
-      wrap.className = "space-y-5";
+      wrap.className = "space-y-8";
 
       const q = document.createElement("h1");
-      q.className = "text-xl sm:text-2xl font-semibold";
+      q.className = "text-2xl sm:text-3xl md:text-4xl font-semibold";
       q.textContent = s.question;
       wrap.appendChild(q);
 
@@ -188,11 +185,12 @@
       }
 
       const btnWrap = document.createElement("div");
-      btnWrap.className = "space-y-3";
+      btnWrap.className = "space-y-4 max-w-2xl mx-auto";
 
       s.answers.forEach(ans => {
         const b = document.createElement("button");
-        b.className = "survey-btn";
+        b.className =
+          "w-full bg-black text-white py-4 rounded-3xl text-lg sm:text-xl font-semibold";
         b.textContent = ans.label;
         b.onclick = () => {
           if (ans.action) ans.action();
@@ -209,7 +207,7 @@
     function renderDone() {
       root.innerHTML = `
         <div class="space-y-4 max-w-md mx-auto">
-          <h1 class="text-2xl font-semibold">All Done!</h1>
+          <h1 class="text-3xl font-semibold">All Done!</h1>
           <p class="text-base">Congratulations — you are now a PrizePaths member.</p>
           <p class="text-sm text-gray-700">
             You now have exclusive access to hundreds of offers. Check out our premium offers!
