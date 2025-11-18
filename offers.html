@@ -4,6 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>PrizePaths — Premium Offers</title>
+
   <style>
     body {
       margin:0;
@@ -42,42 +43,57 @@
       font-size:15px;
     }
 
+    /* ⭐ UNIFIED GRID LAYOUT ⭐ */
     .offers-section {
       max-width:1200px;
       margin:40px auto;
       padding:0 20px;
     }
 
-    .row {
-      display:flex;
-      flex-wrap:wrap;
-      justify-content:center;
+    .grid {
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
       gap:40px;
+      justify-items:center;
       margin-top:30px;
     }
 
     .offer-card {
-      width:250px;
+      width:100%;
+      max-width:260px;
       text-align:center;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
     }
-    .offer-card img {
-      width:250px;
-      height:auto;
-      border-radius:14px;
-      display:block;
-      margin:0 auto;
+
+    .offer-img-container {
+      width:100%;
+      aspect-ratio: 1 / 1; /* square, consistent size */
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+    }
+
+    .offer-img-container img {
+      width:100%;
+      height:100%;
+      object-fit:contain; /* keeps original proportions perfectly */
     }
 
     .btn {
-      margin-top:12px;
+      margin-top:16px;
       padding:12px 24px;
       background:#000;
       color:#fff;
       border-radius:50px;
       text-decoration:none;
       font-size:16px;
-      display:inline-block;
       font-weight:600;
+      display:inline-block;
+      width:100%;
+      text-align:center;
     }
     .btn:hover { background:#222; }
 
@@ -88,12 +104,9 @@
     }
     footer h4 { margin-bottom:10px; }
     footer a { text-decoration:underline; display:block; margin:4px 0; }
-
-    @media(max-width:700px) {
-      .offer-card { width:100%; max-width:280px; }
-    }
   </style>
 </head>
+
 <body>
 
 <header>
@@ -113,25 +126,33 @@
 <div class="offers-section">
   <h2>Popular Now</h2>
 
-  <div class="row">
+  <div class="grid">
 
     <div class="offer-card">
-      <img src="assets/img/airpods-free.png" alt="Wireless Headphones">
+      <div class="offer-img-container">
+        <img src="assets/img/airpods-free.png" alt="">
+      </div>
       <a class="btn" href="prize-survey.html">Get Now</a>
     </div>
 
     <div class="offer-card">
-      <img src="assets/img/ps5-free.png" alt="PS5 Console">
+      <div class="offer-img-container">
+        <img src="assets/img/ps5-free.png" alt="">
+      </div>
       <a class="btn" href="prize-survey.html">Get Now</a>
     </div>
 
     <div class="offer-card">
-      <img src="assets/img/airfryer-free.png" alt="Air Fryer">
+      <div class="offer-img-container">
+        <img src="assets/img/airfryer-free.png" alt="">
+      </div>
       <a class="btn" href="prize-survey.html">Get Now</a>
     </div>
 
     <div class="offer-card">
-      <img src="assets/img/vr-free.png" alt="VR Headset">
+      <div class="offer-img-container">
+        <img src="assets/img/vr-free.png" alt="">
+      </div>
       <a class="btn" href="prize-survey.html">Get Now</a>
     </div>
 
@@ -142,25 +163,33 @@
 <div class="offers-section">
   <h2>Christmas Deals</h2>
 
-  <div class="row">
+  <div class="grid">
 
     <div class="offer-card">
-      <img src="assets/img/dinosaur-free.png" alt="Dinosaur Toy">
+      <div class="offer-img-container">
+        <img src="assets/img/dinosaur-free.png" alt="">
+      </div>
       <a class="btn" href="prize-survey.html">Get Now</a>
     </div>
 
     <div class="offer-card">
-      <img src="assets/img/mariokart-free.png" alt="Mario Kart Set">
+      <div class="offer-img-container">
+        <img src="assets/img/mariokart-free.png" alt="">
+      </div>
       <a class="btn" href="prize-survey.html">Get Now</a>
     </div>
 
     <div class="offer-card">
-      <img src="assets/img/barbie-free.png" alt="Barbie Bus">
+      <div class="offer-img-container">
+        <img src="assets/img/barbie-free.png" alt="">
+      </div>
       <a class="btn" href="prize-survey.html">Get Now</a>
     </div>
 
     <div class="offer-card">
-      <img src="assets/img/bluey-house-free.png" alt="Bluey House">
+      <div class="offer-img-container">
+        <img src="assets/img/bluey-house-free.png" alt="">
+      </div>
       <a class="btn" href="prize-survey.html">Get Now</a>
     </div>
 
@@ -169,7 +198,7 @@
 
 <footer>
   <h4>Quick links</h4>
-  <a href="terms.html">Terms &amp; Conditions</a>
+  <a href="terms.html">Terms & Conditions</a>
   <a href="privacy.html">Privacy Policies</a>
   <a href="advertising.html">Advertising Discloser</a>
 </footer>
