@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PrizePaths — Prize Survey</title>
+  <style>
+    * { box-sizing:border-box; }
+    html, body {
+      margin:0;
+      padding:0;
+      height:100%;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+                   Roboto, Helvetica, Arial, sans-serif;
+      background:#ffffff;
+      color:#000000;
+    }
+    a { color:inherit; text-decoration:none; }
+
+    /* HEADER */
+    header {
+      max-width:1120px;
+      margin:0 auto;
+      padding:16px 24px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+    }
+    header img {
+      height:34px;
+    }
+    header nav a {
+      font-size:14px;
+      font-weight:500;
+      margin-left:20px;
+    }
+    header nav a:hover {
+      text-decoration:underline;
+    }
+
+    /* MAIN SURVEY AREA */
+    main {
+      min-height:calc(100vh - 160px);
+      max-width:1120px;
+      margin:0 auto;
+      padding:32px 24px 40px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+    }
+
+    #survey-card {
+      max-width:600px;
+      width:100%;
+      text-align:center;
+    }
+
+    .question-text {
+      font-size:28px;
+      line-height:1.25;
+      font-weight:600;
+      margin-bottom:32px;
+    }
+
+    .option {
+      display:block;
+      width:100%;
+      border:none;
+      margin:8px 0;
+      padding:16px 20px;
+      border-radius:999px;
+      background:#000000;
+      color:#ffffff;
+      font-size:18px;
+      font-weight:500;
+      cursor:pointer;
+      transition:background .15s ease, transform .05s ease;
+    }
+    .option:hover {
+      background:#222222;
+      transform:translateY(-1px);
+    }
+
+    .image-wrapper {
+      margin-bottom:16px;
+    }
+    .image-wrapper img {
+      max-width:220px;
+      width:100%;
+      border-radius:16px;
+      box-shadow:0 10px 25px rgba(0,0,0,0.15);
+    }
+    .image-caption {
+      font-size:13px;
+      color:#444;
+      margin-bottom:8px;
+    }
+
+    /* THANK YOU */
+    #thankyou {
+      display:none;
+      max-width:640px;
+      width:100%;
+      text-align:center;
+    }
+    #thankyou .emoji {
+      font-size:46px;
+      margin-bottom:12px;
+    }
+    #thankyou h1 {
+      font-size:40px;
+      margin:0 0 20px;
+      font-weight:700;
+    }
+    #thankyou p {
+      font-size:18px;
+      margin:6px 0;
+      line-height:1.5;
+    }
+    .primary-btn {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      margin-top:32px;
+      padding:16px 32px;
+      border-radius:999px;
+      background:#000;
+      color:#fff;
+      font-size:18px;
+      font-weight:600;
+      border:none;
+      cursor:pointer;
+      text-decoration:none;
+    }
+    .primary-btn:hover {
+      background:#222;
+    }
+
+    /* FOOTER */
+    footer {
+      max-width:1120px;
+      margin:0 auto;
+      padding:24px 24px 32px;
+      font-size:14px;
+    }
+    footer h4 {
+      margin:0 0 8px;
+      font-weight:600;
+    }
+    footer ul {
+      list-style:none;
+      padding:0;
+      margin:0;
+    }
+    footer li + li {
+      margin-top:4px;
+    }
+    footer a {
+      text-decoration:underline;
+    }
+
+    @media (max-width:640px) {
+      .question-text { font-size:22px; }
+      .option { font-size:16px; padding:14px 18px; }
+      #thankyou h1 { font-size:32px; }
+      #thankyou p { font-size:16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <a href="index.html" class="flex items-center gap-3">
+      <img src="assets/img/prizepaths-logo.png?v=13" alt="PrizePaths" />
+    </a>
+    <nav>
+      <a href="login.html">Log in</a>
+      <a href="index.html#signup">Sign up</a>
+    </nav>
+  </header>
+
+  <!-- MAIN SURVEY -->
+  <main>
+    <div id="survey-card">
+      <div id="question-area">
+        <!-- Question + options get injected here -->
+      </div>
+    </div>
+
+    <!-- THANK YOU STATE -->
+    <div id="thankyou">
+      <div class="emoji">🎉</div>
+      <h1>Congratulations!</h1>
+      <p>You qualify to get a prize! Keep an eye on your inbox to see if it's on its way.</p>
+      <p>In the meantime, check out some of our other great offers below.</p>
+      <a href="offers.html" class="primary-btn">
+        Check out our other offers
+      </a>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div>
+      <h4>Quick links</h4>
+      <ul>
+        <li><a href="terms.html">Terms &amp; Conditions</a></li>
+        <li><a href="privacy.html">Privacy Policies</a></li>
+        <li><a href="advertising.html">Advertising Discloser</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- SURVEY LOGIC -->
+  <script>
+    // Same questions as your signup survey
+    const questions = [
+      {
+        text: "Do you want to test & receive free products?",
+        options: [
+          { label: "Absolutely" },
+          { label: "YES I'd love to" },
+          { label: "NO I'll miss out" }
+        ]
+      },
+      {
+        text: "When was the last time you did a product test?",
+        options: [
+          { label: "Within the last 6 months" },
+          { label: "Within the last year" },
+          { label: "Over a year ago" },
+          { label: "I never have" }
+        ]
+      },
+      {
+        text: "Do you enjoy getting free products to try?",
+        options: [
+          { label: "YES, Absolutely" },
+          { label: "Yes, Sometimes" },
+          { label: "NO, Not for me" }
+        ]
+      },
+      {
+        text: "Who do you shop for the most?",
+        options: [
+          { label: "Myself" },
+          { label: "Partner" },
+          { label: "Children" },
+          { label: "Friends" },
+          { label: "Pets" }
+        ]
+      },
+      {
+        text: "Which products are most important to you?",
+        options: [
+          { label: "Health / Fitness" },
+          { label: "Beauty" },
+          { label: "Clothing" },
+          { label: "Food" },
+          { label: "Subscriptions" }
+        ]
+      },
+      {
+        text: "Do you want to know about new products to test & other freebies?",
+        options: [
+          { label: "Yes please" },
+          { label: "No, I'll miss out" }
+        ]
+      },
+      {
+        text: "If a company offered a 100% free sample box or heavily discounted trial, would you want to see it?",
+        options: [
+          { label: "Yes" },
+          { label: "No" }
+        ]
+      },
+      {
+        text: "Do you want to receive a Free Daily Goodie Box?",
+        image: "assets/img/daily-goodie-box.png",
+        imageCaption: "",
+        options: [
+          {
+            label: "Yes please",
+            openUrl: "https://la.luxeads.com/aff_c?offer_id=4200&aff_id=4555"
+          },
+          { label: "No thanks" }
+        ]
+      },
+      {
+        text: "How much do you spend on groceries each week?",
+        options: [
+          { label: "Under $100" },
+          { label: "$100 - $199" },
+          { label: "$200 - $300" },
+          { label: "$300 +" }
+        ]
+      },
+      {
+        text: "Would you like a way to save time & money on shopping?",
+        options: [
+          { label: "Yes, that sounds great" },
+          { label: "No thanks" }
+        ]
+      },
+      {
+        text: "Would you like to save time and money with Nurture Life 50% off?",
+        image: "assets/img/nurture-life.png",
+        imageCaption: "Nurture Life delivers healthy, ready-to-eat meals for children aged 8 months up to 10 years old — nutritious food right to your door, ready in as little as one minute.",
+        options: [
+          {
+            label: "YES please",
+            openUrl: "https://afflat3e1.com/trk/lnk/CBC3F3EB-4292-4F6A-99B5-397832E8F242/?o=30729&c=918277&a=775201&k=F618F6F5BFE3B2514825E0019EEDF6EC&l=35329"
+          },
+          { label: "NO" }
+        ]
+      }
+    ];
+
+    let currentIndex = 0;
+
+    const questionArea = document.getElementById("question-area");
+    const surveyCard  = document.getElementById("survey-card");
+    const thankyou    = document.getElementById("thankyou");
+
+    function renderQuestion() {
+      const q = questions[currentIndex];
+      if (!q) {
+        // Done — show thankyou
+        surveyCard.style.display = "none";
+        thankyou.style.display = "block";
+        return;
+      }
+
+      let html = "";
+      html += `<div class="question-text">${q.text}</div>`;
+
+      if (q.image) {
+        html += `<div class="image-wrapper">`;
+        html += `<img src="${q.image}" alt="">`;
+        if (q.imageCaption) {
+          html += `<div class="image-caption">${q.imageCaption}</div>`;
+        }
+        html += `</div>`;
+      }
+
+      html += q.options.map((opt, idx) =>
+        `<button class="option" data-index="${idx}">${opt.label}</button>`
+      ).join("");
+
+      questionArea.innerHTML = html;
+
+      const buttons = questionArea.querySelectorAll(".option");
+      buttons.forEach(btn => {
+        btn.addEventListener("click", () => {
+          const idx = parseInt(btn.getAttribute("data-index"), 10);
+          const opt = q.options[idx];
+
+          // Open affiliate link if configured
+          if (opt && opt.openUrl) {
+            window.open(opt.openUrl, "_blank");
+          }
+
+          currentIndex += 1;
+          renderQuestion();
+        });
+      });
+    }
+
+    renderQuestion();
+  </script>
+</body>
+</html>
