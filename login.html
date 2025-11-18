@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>PrizePaths — Login</title>
   <script src="https://cdn.tailwindcss.com?v=13"></script>
+
   <style>
     html { scroll-behavior:smooth; }
     body {
@@ -12,6 +13,15 @@
       background:#f5f5f5;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter,
                    Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    /* HIDE ALL DEBUG TEXT (green text & boot banner) */
+    #pp-debug,
+    #pp-boot {
+      display:none !important;
+      visibility:hidden !important;
+      opacity:0 !important;
+      pointer-events:none !important;
     }
   </style>
 </head>
