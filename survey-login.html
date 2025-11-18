@@ -1,101 +1,112 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>PrizePaths — Login Survey</title>
-  <script src="https://cdn.tailwindcss.com?v=14"></script>
-
+  <script src="https://cdn.tailwindcss.com?v=13"></script>
   <style>
     body {
-      background:#ffffff;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter;
       color:#000;
-    }
-    .survey-box {
       background:#fff;
-      border:1px solid #000;
-      border-radius:18px;
-      padding:30px;
-      max-width:580px;
-      margin:20px auto;
-    }
-    .answer-btn {
-      display:block;
-      width:100%;
-      padding:14px 20px;
-      margin:10px 0;
-      border:1px solid #000;
-      border-radius:12px;
-      text-align:center;
-      font-weight:600;
-    }
-    .answer-btn:hover {
-      background:#000;
-      color:#fff;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter,
+                   Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
     }
   </style>
 </head>
+<body class="min-h-screen flex flex-col">
 
-<body>
-
-  <!-- Header -->
-  <header class="w-full border-b border-black py-4 px-6 flex justify-between items-center">
-    <a href="index.html">
-      <img src="assets/img/prizepaths-logo.png" class="h-10" alt="PrizePaths">
+  <!-- HEADER (same style as signup survey / main site) -->
+  <header class="max-w-7xl mx-auto w-full px-6 py-6 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-3">
+      <img src="assets/img/prizepaths-logo.png?v=13"
+           alt="PrizePaths"
+           class="h-10 sm:h-12 md:h-14 w-auto" />
     </a>
-    <p class="text-sm font-semibold">LOGIN SURVEY</p>
+    <nav class="flex items-center gap-6 text-sm font-medium">
+      <a href="login.html" class="hover:underline">Log in</a>
+      <a href="index.html#signup" class="hover:underline">Sign up</a>
+    </nav>
   </header>
 
-  <!-- Survey wrapper -->
-  <div class="survey-box mt-8">
-    
-    <h2 class="text-2xl font-semibold mb-6 text-center">Quick Login Survey</h2>
+  <!-- MAIN SURVEY AREA (same layout style as signup survey) -->
+  <main class="flex-1 flex items-start justify-center">
+    <div class="w-full max-w-3xl px-4 sm:px-6 pt-10 pb-16">
+      <div class="border border-black rounded-3xl px-6 sm:px-10 py-10 shadow-sm bg-white">
+        <!-- Question text -->
+        <h1 id="questionText"
+            class="text-center text-[22px] sm:text-[26px] md:text-[30px] font-semibold mb-8">
+          Loading question…
+        </h1>
 
-    <!-- Question container -->
-    <div id="questionBox"></div>
+        <!-- Daily Goodie Box image container (shown only on Q5) -->
+        <div id="questionImage" class="mb-6 hidden">
+          <img
+            src="assets/img/daily-goodie-box.png?v=13"
+            alt="Daily Goodie Box"
+            class="mx-auto max-h-52 w-auto rounded-xl border border-gray-200 object-contain"
+          />
+        </div>
 
-  </div>
+        <!-- Answers -->
+        <div id="answers" class="space-y-4 max-w-xl mx-auto"></div>
+      </div>
+    </div>
+  </main>
 
-  <!-- Footer spacing -->
-  <div class="h-10"></div>
+  <!-- FOOTER (same as other pages) -->
+  <footer class="border-t border-gray-200">
+    <div class="max-w-7xl mx-auto px-6 py-8 text-black">
+      <h4 class="font-semibold mb-3">Quick links</h4>
+      <ul class="space-y-2 text-sm sm:text-base">
+        <li><a class="underline" href="terms.html">Terms &amp; Conditions</a></li>
+        <li><a class="underline" href="privacy.html">Privacy Policies</a></li>
+        <li><a class="underline" href="advertising.html">Advertising Discloser</a></li>
+      </ul>
+    </div>
+  </footer>
 
-
-  <!-- SURVEY LOGIC -->
+  <!-- LOGIN SURVEY LOGIC (same style behaviour as signup survey) -->
   <script>
-    const survey = [
+    // Login survey questions (your script)
+    const loginSurvey = [
       {
-        q: "Do you enjoy getting free products to try?",
-        a: [
+        id: "q1",
+        text: "Do you enjoy getting free products to try?",
+        answers: [
           "YES, Absolutely",
           "Yes, Sometimes",
           "NO, Not for me"
         ]
       },
       {
-        q: "Would you like to receive emails about new offers?",
-        a: [
+        id: "q2",
+        text: "Would you like to receive emails about new offers?",
+        answers: [
           "YES",
           "NO"
         ]
       },
       {
-        q: "I want to make money from my phone",
-        a: [
+        id: "q3",
+        text: "I want to make money from my phone",
+        answers: [
           "YES Please",
           "NO thanks"
         ]
       },
       {
-        q: "I want to receive free products to try in exchange for my opinion",
-        a: [
+        id: "q4",
+        text: "I want to receive free products to try in exchange for my opinion",
+        answers: [
           "YES",
-          "NO"
+          "No"
         ]
       },
       {
-        q: "I would like to receive a Daily Goodie Box in exchange for my thoughts?",
-        a: [
+        id: "q5",
+        text: "I would like to receive a Daily Goodie Box in exchange for my thoughts?",
+        answers: [
           {
             label: "Absolutely",
             link: "https://la.luxeads.com/aff_c?offer_id=4200&aff_id=4555"
@@ -107,46 +118,74 @@
       }
     ];
 
-    let step = 0;
+    let loginIndex = 0;
 
-    function renderQuestion() {
-      const box = document.getElementById("questionBox");
-      const item = survey[step];
+    const questionEl = document.getElementById("questionText");
+    const answersEl  = document.getElementById("answers");
+    const imageEl    = document.getElementById("questionImage");
 
-      if (!item) {
+    function renderLoginQuestion() {
+      const q = loginSurvey[loginIndex];
+
+      // If no more questions, go to offers page
+      if (!q) {
         window.location.href = "offers.html";
         return;
       }
 
-      let html = `<h3 class="text-xl font-semibold mb-6">${item.q}</h3>`;
+      // Set question text
+      questionEl.textContent = q.text;
 
-      item.a.forEach(ans => {
+      // Show Daily Goodie Box image ONLY on Q5
+      if (q.id === "q5") {
+        imageEl.classList.remove("hidden");
+      } else {
+        imageEl.classList.add("hidden");
+      }
+
+      // Render answers
+      answersEl.innerHTML = "";
+      q.answers.forEach((ans) => {
+        let label, link;
+
         if (typeof ans === "string") {
-          html += `<button class="answer-btn" onclick="nextStep()">${ans}</button>`;
+          label = ans;
+          link = null;
         } else {
-          if (ans.link) {
-            html += `<button class="answer-btn" onclick="openLink('${ans.link}')">${ans.label}</button>`;
-          } else {
-            html += `<button class="answer-btn" onclick="nextStep()">${ans.label}</button>`;
-          }
+          label = ans.label;
+          link  = ans.link || null;
         }
+
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.textContent = label;
+        btn.className =
+          "w-full bg-black text-white rounded-2xl py-3 sm:py-4 px-4 " +
+          "text-base sm:text-lg font-medium hover:bg-gray-800 transition";
+
+        btn.addEventListener("click", () => {
+          // Special logic for Q5 (Daily Goodie Box)
+          if (q.id === "q5") {
+            if (link) {
+              // Open affiliate link in new tab
+              window.open(link, "_blank");
+            }
+            // After Q5, go to offers page
+            window.location.href = "offers.html";
+            return;
+          }
+
+          // For other questions just go to the next question
+          loginIndex += 1;
+          renderLoginQuestion();
+        });
+
+        answersEl.appendChild(btn);
       });
-
-      box.innerHTML = html;
     }
 
-    function nextStep() {
-      step++;
-      renderQuestion();
-    }
-
-    function openLink(url) {
-      window.open(url, "_blank");
-      nextStep();
-    }
-
-    renderQuestion();
+    // Start the survey
+    renderLoginQuestion();
   </script>
-
 </body>
 </html>
