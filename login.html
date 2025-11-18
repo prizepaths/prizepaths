@@ -3,24 +3,22 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>PrizePaths — Log in</title>
+  <title>PrizePaths — Login</title>
   <script src="https://cdn.tailwindcss.com?v=13"></script>
   <style>
     html { scroll-behavior:smooth; }
     body {
       color:#000;
-      background:#fff;
+      background:#f5f5f5;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter,
                    Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
     }
-    /* hide debug banners */
-    #pp-debug, #pp-boot { display:none!important; }
   </style>
 </head>
-<body class="min-h-screen flex flex-col">
+<body>
 
-  <!-- HEADER (same as index) -->
-  <header class="max-w-7xl mx-auto px-6 py-6 flex items-center justify-between w-full">
+  <!-- HEADER -->
+  <header class="max-w-7xl mx-auto px-6 py-6 flex items-center justify-between">
     <a href="index.html" class="flex items-center gap-3">
       <img src="assets/img/prizepaths-logo.png?v=13"
            alt="PrizePaths"
@@ -32,68 +30,113 @@
     </nav>
   </header>
 
-  <!-- MAIN LOGIN CARD -->
-  <main class="flex-1 flex items-center justify-center px-4 pb-16">
-    <div class="w-full max-w-md border border-black rounded-3xl px-6 py-8 shadow-sm">
-      <h1 class="text-2xl sm:text-3xl font-semibold mb-2 text-center">
-        Log in to your PrizePaths account
-      </h1>
-      <p class="text-sm text-gray-700 mb-6 text-center">
-        Welcome back! Log in to continue to your premium offers.
-      </p>
+  <!-- LOGIN / SIGNUP SPLIT CARD -->
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 pb-16">
+    <section class="bg-white md:bg-transparent rounded-3xl shadow-sm overflow-hidden">
+      <div class="grid md:grid-cols-2 bg-white rounded-3xl">
 
-      <form id="loginForm" class="space-y-4">
-        <div>
-          <label class="block text-sm font-medium mb-1" for="loginEmail">Email address</label>
-          <input
-            id="loginEmail"
-            name="email"
-            type="email"
-            required
-            class="w-full border border-black px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-black bg-white"
-            placeholder="you@example.com"
-          />
+        <!-- LEFT: LOGIN -->
+        <div class="px-8 sm:px-12 py-10 md:py-12">
+          <h1 class="font-serif text-3xl sm:text-4xl mb-8">Login</h1>
+
+          <form id="loginForm" class="space-y-6" autocomplete="on">
+            <div>
+              <label for="loginEmail" class="block text-sm font-medium mb-2">
+                Email Address
+              </label>
+              <input
+                id="loginEmail"
+                name="email"
+                type="email"
+                required
+                placeholder="you@example.com"
+                class="w-full border border-gray-300 px-4 py-3 rounded-lg bg-[#f3f7ff]
+                       focus:outline-none focus:ring-2 focus:ring-black focus:border-black"
+              />
+            </div>
+
+            <div>
+              <label for="loginPassword" class="block text-sm font-medium mb-2">
+                Password
+              </label>
+              <input
+                id="loginPassword"
+                name="password"
+                type="password"
+                required
+                placeholder="Enter your password"
+                class="w-full border border-gray-300 px-4 py-3 rounded-lg bg-[#f3f7ff]
+                       focus:outline-none focus:ring-2 focus:ring-black focus:border-black"
+              />
+            </div>
+
+            <button
+              type="submit"
+              class="inline-flex items-center justify-center px-10 py-3 rounded-full
+                     bg-black text-white font-semibold text-base hover:bg-gray-800">
+              Login
+            </button>
+
+            <div>
+              <a href="#" class="text-sm text-gray-700 hover:underline">
+                Forgot password?
+              </a>
+            </div>
+          </form>
         </div>
 
-        <div>
-          <label class="block text-sm font-medium mb-1" for="loginPassword">Password</label>
-          <input
-            id="loginPassword"
-            name="password"
-            type="password"
-            required
-            minlength="6"
-            class="w-full border border-black px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-black bg-white"
-            placeholder="Your password"
-          />
+        <!-- RIGHT: SIGN UP PANEL -->
+        <div class="px-8 sm:px-12 py-10 md:py-12 bg-[#fbf3e3]">
+          <div class="max-w-sm">
+            <h2 class="font-serif text-2xl sm:text-3xl md:text-4xl mb-2">
+              Not a Member?
+            </h2>
+            <h3 class="font-serif text-2xl sm:text-3xl md:text-4xl mb-6">
+              Sign Up
+            </h3>
+
+            <p class="text-sm sm:text-base mb-4">
+              Create a PrizePaths account to access exclusive giveaways &amp; new-product trials.
+            </p>
+            <p class="text-sm sm:text-base mb-6">
+              All giveaways and products are subject to availability. No shipping fees.
+              No credit cards. No worries.
+            </p>
+
+            <p class="text-xs sm:text-[13px] text-gray-800 mb-6 leading-relaxed">
+              By signing up, you confirm you've read and agree to the
+              <a href="privacy.html" class="underline">Privacy Policy</a> and
+              <a href="terms.html" class="underline">Terms &amp; Conditions</a>.
+            </p>
+
+            <a
+              href="index.html#signup"
+              class="inline-flex items-center justify-center px-10 py-3 rounded-full
+                     bg-black text-white font-semibold text-base hover:bg-gray-800"
+            >
+              Sign up now
+            </a>
+          </div>
         </div>
-
-        <button
-          type="submit"
-          class="w-full bg-black text-white font-semibold px-6 py-3 rounded-2xl text-base sm:text-lg hover:bg-gray-800"
-        >
-          Log in
-        </button>
-
-        <p class="text-xs sm:text-sm text-center text-gray-700 mt-2">
-          Don’t have an account?
-          <a href="index.html#signup" class="underline">Sign up instead</a>
-        </p>
-      </form>
-    </div>
+      </div>
+    </section>
   </main>
 
   <!-- FOOTER -->
-  <footer class="max-w-7xl mx-auto px-6 py-10 text-black w-full border-t border-gray-200">
-    <h4 class="font-semibold mb-3">Quick links</h4>
-    <ul class="space-y-2 text-sm sm:text-base">
-      <li><a class="underline" href="terms.html">Terms &amp; Conditions</a></li>
-      <li><a class="underline" href="privacy.html">Privacy Policies</a></li>
-      <li><a class="underline" href="advertising.html">Advertising Discloser</a></li>
-    </ul>
+  <footer class="max-w-7xl mx-auto px-6 py-12 text-black">
+    <div class="grid md:grid-cols-3 gap-8">
+      <div>
+        <h4 class="font-semibold mb-3">Quick links</h4>
+        <ul class="space-y-2 text-sm sm:text-base">
+          <li><a class="underline" href="terms.html">Terms &amp; Conditions</a></li>
+          <li><a class="underline" href="privacy.html">Privacy Policies</a></li>
+          <li><a class="underline" href="advertising.html">Advertising Discloser</a></li>
+        </ul>
+      </div>
+    </div>
   </footer>
 
-  <!-- Firebase + app JS -->
+  <!-- Firebase -->
   <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
