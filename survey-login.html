@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PrizePaths — Login Survey</title>
+  <script src="https://cdn.tailwindcss.com?v=14"></script>
+
+  <style>
+    body {
+      background:#ffffff;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter;
+      color:#000;
+    }
+    .survey-box {
+      background:#fff;
+      border:1px solid #000;
+      border-radius:18px;
+      padding:30px;
+      max-width:580px;
+      margin:20px auto;
+    }
+    .answer-btn {
+      display:block;
+      width:100%;
+      padding:14px 20px;
+      margin:10px 0;
+      border:1px solid #000;
+      border-radius:12px;
+      text-align:center;
+      font-weight:600;
+    }
+    .answer-btn:hover {
+      background:#000;
+      color:#fff;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Header -->
+  <header class="w-full border-b border-black py-4 px-6 flex justify-between items-center">
+    <a href="index.html">
+      <img src="assets/img/prizepaths-logo.png" class="h-10" alt="PrizePaths">
+    </a>
+    <p class="text-sm font-semibold">LOGIN SURVEY</p>
+  </header>
+
+  <!-- Survey wrapper -->
+  <div class="survey-box mt-8">
+    
+    <h2 class="text-2xl font-semibold mb-6 text-center">Quick Login Survey</h2>
+
+    <!-- Question container -->
+    <div id="questionBox"></div>
+
+  </div>
+
+  <!-- Footer spacing -->
+  <div class="h-10"></div>
+
+
+  <!-- SURVEY LOGIC -->
+  <script>
+    const survey = [
+      {
+        q: "Do you enjoy getting free products to try?",
+        a: [
+          "YES, Absolutely",
+          "Yes, Sometimes",
+          "NO, Not for me"
+        ]
+      },
+      {
+        q: "Would you like to receive emails about new offers?",
+        a: [
+          "YES",
+          "NO"
+        ]
+      },
+      {
+        q: "I want to make money from my phone",
+        a: [
+          "YES Please",
+          "NO thanks"
+        ]
+      },
+      {
+        q: "I want to receive free products to try in exchange for my opinion",
+        a: [
+          "YES",
+          "NO"
+        ]
+      },
+      {
+        q: "I would like to receive a Daily Goodie Box in exchange for my thoughts?",
+        a: [
+          {
+            label: "Absolutely",
+            link: "https://la.luxeads.com/aff_c?offer_id=4200&aff_id=4555"
+          },
+          {
+            label: "Nah I don't like free stuff"
+          }
+        ]
+      }
+    ];
+
+    let step = 0;
+
+    function renderQuestion() {
+      const box = document.getElementById("questionBox");
+      const item = survey[step];
+
+      if (!item) {
+        window.location.href = "offers.html";
+        return;
+      }
+
+      let html = `<h3 class="text-xl font-semibold mb-6">${item.q}</h3>`;
+
+      item.a.forEach(ans => {
+        if (typeof ans === "string") {
+          html += `<button class="answer-btn" onclick="nextStep()">${ans}</button>`;
+        } else {
+          if (ans.link) {
+            html += `<button class="answer-btn" onclick="openLink('${ans.link}')">${ans.label}</button>`;
+          } else {
+            html += `<button class="answer-btn" onclick="nextStep()">${ans.label}</button>`;
+          }
+        }
+      });
+
+      box.innerHTML = html;
+    }
+
+    function nextStep() {
+      step++;
+      renderQuestion();
+    }
+
+    function openLink(url) {
+      window.open(url, "_blank");
+      nextStep();
+    }
+
+    renderQuestion();
+  </script>
+
+</body>
+</html>
