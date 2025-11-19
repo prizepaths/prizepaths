@@ -18,6 +18,35 @@
   <link rel="icon" type="image/png" sizes="539x539" href="assets/img/Prizepaths-P-favicon.png">
   <link rel="icon" type="image/png" sizes="256x256" href="assets/img/Prizepaths-P-favicon.png">
   <link rel="icon" type="image/png" sizes="96x96" href="assets/img/Prizepaths-P-favicon.png">
+<style>
+  .zoom-fix {
+    transform-origin: top left;
+  }
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const wrapper = document.createElement("div");
+  wrapper.className = "zoom-fix";
+
+  while (document.body.firstChild) {
+    wrapper.appendChild(document.body.firstChild);
+  }
+  document.body.appendChild(wrapper);
+
+  function fixZoom() {
+    const scale = window.devicePixelRatio || 1;
+    if (scale < 1) {
+      wrapper.style.transform = `scale(${1 / scale})`;
+    } else {
+      wrapper.style.transform = "scale(1)";
+    }
+  }
+
+  fixZoom();
+  window.addEventListener("resize", fixZoom);
+});
+</script>
 </head>
 <body>
 
